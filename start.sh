@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-npm start server
+# equivalent to npm run server:dev
+npm start
