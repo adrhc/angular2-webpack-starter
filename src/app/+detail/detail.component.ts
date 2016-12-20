@@ -8,19 +8,18 @@ import { Component } from '@angular/core';
 console.log('`Detail` component loaded asynchronously');
 
 @Component({
-  selector: 'detail',
-  template: `
-    <h1>Hello from Detail</h1>
-    <router-outlet></router-outlet>
-  `
+    // moduleId: module.id, -> inutil si inofensiv daca templateUrl foloseste ./
+    selector: 'detail',
+    templateUrl: './detail.component.html'
 })
 export class DetailComponent {
-  constructor() {
 
-  }
+    constructor() {
 
-  ngOnInit() {
-    console.log('hello `Detail` component');
-  }
+    }
+
+    ngOnInit() {
+        console.log('hello `Detail` component');
+    }
 
 }
