@@ -5,6 +5,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
 
+// import testImage1 from 'file-loader!../images/test-image1.png';
+
 /*
  * App Component
  * Top Level Component
@@ -57,7 +59,9 @@ import { AppState } from './app.service';
       <strong>Bootstrap test</strong><br>
       <a href="mailto:#">first.last@example.com</a>
       <br>
-      <img src="../images/test-image1.png" width="75px">
+      <!-- webpack interpolation with $ { -->
+      <img src="${require(`../images/test-image1.png`)}" width="75px">
+      <img src="{{testImage1}}" width="75px">
     </address>
 
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
@@ -73,6 +77,7 @@ import { AppState } from './app.service';
   `
 })
 export class AppComponent {
+  testImage1 = require('images/test-image1.png');
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
