@@ -48,7 +48,7 @@ import { AppState } from './app.service';
 
     <br>
     <address>
-      <strong>Twitter, Inc.</strong><br>
+      <strong>Twitter, Inc. <i class="glyphicon glyphicon-glass"></i></strong><br>
       1355 Market Street, Suite 900<br>
       San Francisco, CA 94103<br>
       <abbr title="Phone">P:</abbr> (123) 456-7890
