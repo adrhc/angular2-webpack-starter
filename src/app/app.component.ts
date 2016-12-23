@@ -46,13 +46,25 @@ import { AppState } from './app.service';
       <router-outlet></router-outlet>
     </main>
 
+    <br>
+    <address>
+      <strong>Twitter, Inc.</strong><br>
+      1355 Market Street, Suite 900<br>
+      San Francisco, CA 94103<br>
+      <abbr title="Phone">P:</abbr> (123) 456-7890
+    </address>
+    <address>
+      <strong>Bootstrap test</strong><br>
+      <a href="mailto:#">first.last@example.com</a>
+    </address>
+
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
 
     <footer>
       <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
       <div>
         <a [href]="url">
-          <img [src]="angularclassLogo" width="25%">
+          <img [src]="angularclassLogo" width="3%">
         </a>
       </div>
     </footer>

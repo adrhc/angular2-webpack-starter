@@ -38,7 +38,7 @@ module.exports = {
 		{rel: 'manifest', href: '/assets/manifest.json'},
 
 		// see also https://gist.github.com/romelgomez/106625de08bbf68a2ca2b5c8aa93dcc8
-		{rel: 'stylesheet', href: '/assets/css/styles.css'}
+		// {rel: 'stylesheet', href: '/assets/css/styles.css'}
 	],
 	meta: [
 		{name: 'msapplication-TileColor', content: '#00bcd4'},

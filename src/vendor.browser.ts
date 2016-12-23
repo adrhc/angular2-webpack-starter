@@ -24,9 +24,6 @@ import 'rxjs/add/operator/mergeMap';
 // bootstrap 3.3.7:
 import 'bootstrap/dist/css/bootstrap';
 import 'bootstrap/dist/css/bootstrap-theme';
-// The below works without webpack.common.js resolve + test:css change:
-// require("bootstrap/dist/css/bootstrap.css");
-// require("bootstrap/dist/css/bootstrap-theme.css");
 
 if ('production' === ENV) {
   // Production

@@ -1,0 +1,9 @@
+.misc1, .miscGlobal {
+	background-color: aqua;
+	border: solid red;
+	color: green;
+}
+
+.hostBinding1 {
+	font-style: italic;
+}

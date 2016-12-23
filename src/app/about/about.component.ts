@@ -3,8 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'about',
-  styles: [`
-  `],
+  styleUrls: ['./about.css'],
   template: `
     <h1>About</h1>
     <div>
@@ -17,6 +16,10 @@ import { ActivatedRoute } from '@angular/router';
       </h3>
     </div>
     <pre>this.localState = {{ localState | json }}</pre>
+    <div class="misc1">misc1</div>
+    <div class="miscGlobal">miscGlobal</div>
+    <div class="miscApp">miscApp</div>
+    <div class="miscAbout">miscAbout</div>
   `
 })
 export class AboutComponent {

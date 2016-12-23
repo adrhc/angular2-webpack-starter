@@ -6,3 +6,13 @@ html, body{
 span.active {
   background-color: gray;
 }
+
+.misc1, .miscApp {
+  background-color: aqua;
+  border: solid red;
+  color: blue;
+}
+
+.hostBinding1 {
+  font-weight: bolder;
+}

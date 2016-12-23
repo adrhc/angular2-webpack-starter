@@ -37,6 +37,9 @@ const METADATA = {
  */
 module.exports = function (options) {
 	isProd = options.env === 'production';
+	if (isProd) {
+		METADATA.baseUrl = '/a2ws/'
+	}
 	return {
 
 		/*
@@ -120,6 +123,14 @@ module.exports = function (options) {
 					use: 'json-loader'
 				},
 
+				// for bootstrap (before other css tests)
+				{
+					test: /\.css$/,
+					loader: ['style-loader', 'css-loader'],
+					exclude: /src\//,
+					include: [/node_modules\/bootstrap/, /src\/assests\/css\/styles\.css/]
+				},
+
 				/*
 				 * to string and css loader support for *.css files
 				 * Returns file content as string
@@ -130,14 +141,6 @@ module.exports = function (options) {
 					use: ['to-string-loader', 'css-loader'],
 					include: /src\//,
 					exclude: /node_modules\//
-				},
-
-				// for bootstrap
-				{
-					test: /\.css$/,
-					use: ['style-loader', 'css-loader'],
-					exclude: /src\//,
-					include: /node_modules\/bootstrap/
 				},
 
 				/* Raw loader support for *.html
@@ -160,9 +163,6 @@ module.exports = function (options) {
 
 				// for bootstrap
 				{
-					test: /\.png$/, loader: "url-loader?limit=100"
-				},
-				{
 					test: /\.(jpe?g|gif|svg)$/i,
 					loaders: [
 						// image-webpack-loader chained with the file-loader (equivalent to: file?...!image-webpack?...)
@@ -170,10 +170,8 @@ module.exports = function (options) {
 						'image-webpack-loader?bypassOnDebug=true&optimizationLevel=7&interlaced=false'
 					]
 				},
-				{
-					test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-					use: "url-loader?limit=1000&mimetype=application/vnd.ms-fontobject"
-				},
+				{test: /\.png$/, loader: "url-loader?limit=100"},
+				{test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=1000&mimetype=application/vnd.ms-fontobject"},
 				{test: /\.(woff|woff2)$/, loader: "url-loader?&limit=1000&mimetype=application/font-woff"},
 				{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=1000&mimetype=application/octet-stream"}
 

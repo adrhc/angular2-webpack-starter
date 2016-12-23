@@ -1,1 +1,6 @@
 /*styles for home content only*/
+.misc1, .miscHome {
+	background-color: aqua;
+	border: solid red;
+	color: yellow;
+}
