@@ -56,6 +56,8 @@ import { AppState } from './app.service';
     <address>
       <strong>Bootstrap test</strong><br>
       <a href="mailto:#">first.last@example.com</a>
+      <br>
+      <img src="images/angularclass-logo.png" width="15%">
     </address>
 
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
