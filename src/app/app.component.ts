@@ -57,7 +57,7 @@ import { AppState } from './app.service';
       <strong>Bootstrap test</strong><br>
       <a href="mailto:#">first.last@example.com</a>
       <br>
-      <img src="images/test-image1.png" width="15%">
+      <img src="../images/test-image1.png" width="75px">
     </address>
 
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>

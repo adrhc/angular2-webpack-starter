@@ -133,7 +133,7 @@ module.exports = function (options) {
 					test: /\.css$/,
 					loader: ['style-loader', 'css-loader'],
 					exclude: /src\//,
-					include: [/node_modules\/bootstrap/, /src\/assests\/css\/styles\.css/]
+					include: [/node_modules\/bootstrap/]
 				},
 
 				/*
@@ -155,7 +155,13 @@ module.exports = function (options) {
 				 */
 				{
 					test: /\.html$/,
-					use: 'raw-loader',
+					// raw-loader vs html-loader
+					// http://stackoverflow.com/questions/35400733/webpack-and-angular-html-image-loading
+					loaders: [
+						"html-loader?" + JSON.stringify({
+							attrs: ["img:src"]
+						})
+					],
 					exclude: [helpers.root('src/index.html')]
 				},
 
@@ -169,13 +175,15 @@ module.exports = function (options) {
 				// for bootstrap
 				{test: /\.png$/, loader: "url-loader?limit=100"},
 				{test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=1000&mimetype=application/vnd.ms-fontobject"},
-				{test: /\.(woff|woff2)$/, loader: "url-loader?&limit=1000&mimetype=application/font-woff"},
+				{test: /\.(woff|woff2)$/, loader: "url-loader?limit=1000&mimetype=application/font-woff"},
 				{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=1000&mimetype=application/octet-stream"},
 				{
-					test: /\.(eot|gif|png|jpe?g|svg|ttf|woff2?)$/i,
+					test: /\.(gif|jpe?g|svg)$/i,
 					loaders: [
 						// image-webpack-loader chained with the file-loader (equivalent to: file?...!image-webpack?...)
-						'file-loader?hash=sha512&digest=hex&name=[name]-[hash].[ext]',
+						// [name]-[hash].[ext] will break glyphicon
+						// [name].[hash].[ext] and [hash].[name].[ext] are ok but will generate without "[name]."
+						'file-loader?hash=sha512&digest=hex&name=[hash].[name].[ext]',
 						'image-webpack-loader?bypassOnDebug=true&optimizationLevel=7&interlaced=false'
 					]
 				}
