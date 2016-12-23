@@ -1,5 +1,5 @@
-.misc1 .miscDetail {
+.misc1, .miscAbout {
 	background-color: aqua;
 	border: solid red;
-	color: red;
+	color: yellow;
 }

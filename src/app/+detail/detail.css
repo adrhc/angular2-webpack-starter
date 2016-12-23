@@ -1,5 +1,9 @@
-.misc1 {
+.misc1, .miscDetail {
 	background-color: aqua;
 	border: solid red;
-	color: green;
+	color: red;
+}
+
+.hostBinding1 {
+	font-style: italic;
 }
