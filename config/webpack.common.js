@@ -41,6 +41,11 @@ module.exports = function (options) {
 		METADATA.baseUrl = '/a2ws/'
 	}
 	return {
+		// required (output.publicPath) by html-elements-plugin below
+		output: {
+			// some plugins need publicPath (e.g. html-elements-plugin)
+			publicPath: METADATA.baseUrl
+		},
 
 		/*
 		 * Cache generated modules and chunks to improve performance for multiple incremental builds.
@@ -162,18 +167,18 @@ module.exports = function (options) {
 				// },
 
 				// for bootstrap
-				{
-					test: /\.(jpe?g|gif|svg)$/i,
-					loaders: [
-						// image-webpack-loader chained with the file-loader (equivalent to: file?...!image-webpack?...)
-						'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-						'image-webpack-loader?bypassOnDebug=true&optimizationLevel=7&interlaced=false'
-					]
-				},
 				{test: /\.png$/, loader: "url-loader?limit=100"},
 				{test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=1000&mimetype=application/vnd.ms-fontobject"},
 				{test: /\.(woff|woff2)$/, loader: "url-loader?&limit=1000&mimetype=application/font-woff"},
-				{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=1000&mimetype=application/octet-stream"}
+				{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=1000&mimetype=application/octet-stream"},
+				{
+					test: /\.(eot|gif|png|jpe?g|svg|ttf|woff2?)$/i,
+					loaders: [
+						// image-webpack-loader chained with the file-loader (equivalent to: file?...!image-webpack?...)
+						'file-loader?hash=sha512&digest=hex&name=[name]-[hash].[ext]',
+						'image-webpack-loader?bypassOnDebug=true&optimizationLevel=7&interlaced=false'
+					]
+				}
 
 			],
 
