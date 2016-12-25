@@ -7,3 +7,8 @@
 .hostBinding1 {
 	font-style: italic;
 }
+
+:host {
+  font-style: italic;
+  text-align: center;
+}

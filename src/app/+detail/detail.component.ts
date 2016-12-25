@@ -14,7 +14,7 @@ console.log('`Detail` component loaded asynchronously');
     styleUrls: ['./detail.css']
 })
 export class DetailComponent {
-    @HostBinding('class.hostBinding1') isValid = true;
+    // @HostBinding('class.hostBinding1') isValid = true;
     public alterEgo: string;
 
     constructor() {
