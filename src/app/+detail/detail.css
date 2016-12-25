@@ -9,6 +9,6 @@
 }
 
 :host {
-  font-style: italic;
-  text-align: center;
+  display: block;
+  border: dotted darkorchid;
 }
