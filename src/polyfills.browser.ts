@@ -33,8 +33,9 @@ import 'zone.js/dist/zone';
 // Typescript emit helpers polyfill
 import 'ts-helpers';
 
-// Angular animations are built on top of the standard Web Animations API and run natively on browsers that support it.
-// For other browsers, a polyfill is required. Grab web-animations.min.js from GitHub and add it to your page.
+// Angular animations are built on top of the standard Web Animations
+// API and run natively on browsers that support it. For other browsers,
+// a polyfill is required. Grab web-animations.min.js from GitHub and add it to your page.
 import 'web-animations-js/web-animations.min';
 
 if ('production' === ENV) {
