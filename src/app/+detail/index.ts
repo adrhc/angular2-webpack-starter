@@ -23,5 +23,4 @@ export const routes = [
   ]
 })
 export default class DetailModule {
-  // static routes = routes;
 }
