@@ -18,7 +18,8 @@ export const ROUTES: Routes = [
   // doesn't work
   // { path: 'detail', loadChildren: 'es6-promise-loader?,[name]!./+detail/index#DetailModule' },
   // { path: 'detail', loadChildren: 'es6-promise-loader?,[name]!./+detail#DetailModule' },
-  { path: 'detail', loadChildren: 'es6-promise-loader!./+detail#DetailModule' },
+  { path: 'detail', loadChildren: 'es6-promise-loader!./+detail/index#DetailModule' },
+  // { path: 'detail', loadChildren: 'es6-promise-loader!./+detail#DetailModule' },
 
   // doesn't work
   // { path: 'detail', loadChildren: () => require('./+detail/index')('DetailModule') },
