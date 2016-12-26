@@ -234,7 +234,8 @@ module.exports = function (options) {
        * in above CommonsChunkPlugin doesn't work because will
        * use filename: '[name].[chunkhash].bundle.js' (see webpack.prod.js).
        *
-       * [hash] - generates a new value for every new build
+       * [hash] generates a hash of all chunks
+       * [chunkhash] generates a hash per chunk
        */
       new CommonsChunkPlugin({
         name: 'webpack-runtime',
