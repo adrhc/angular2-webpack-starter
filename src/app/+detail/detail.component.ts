@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component } from '@angular/core';
 /*
  * We're loading this component asynchronously
  * We are using some magic with es6-promise-loader that will wrap the module with a Promise
@@ -14,11 +14,7 @@ console.log('`Detail` component loaded asynchronously');
     styleUrls: ['./detail.css']
 })
 export class DetailComponent {
-    // @HostBinding('class.hostBinding1') isValid = true;
-    public alterEgo: string;
-
     constructor() {
-
     }
 
     ngOnInit() {
