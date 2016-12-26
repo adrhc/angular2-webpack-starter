@@ -234,6 +234,7 @@ module.exports = function (options) {
        * in above CommonsChunkPlugin doesn't work because will
        * use filename: '[name].[chunkhash].bundle.js' (see webpack.prod.js).
        *
+       * https://webpack.github.io/docs/long-term-caching.html#option-1-one-hash-for-the-bundle
        * [hash] generates a hash of all chunks
        * [chunkhash] generates a hash per chunk
        */
