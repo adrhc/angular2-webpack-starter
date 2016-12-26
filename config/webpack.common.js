@@ -134,8 +134,8 @@ module.exports = function (options) {
 				{
 					test: /\.css$/,
 					loader: ['style-loader', 'css-loader'],
-					exclude: /src\//,
-					include: [/node_modules\/bootstrap/]
+					exclude: helpers.root('src'),
+					include: helpers.root('node_modules')
 				},
 
 				/*
@@ -146,8 +146,8 @@ module.exports = function (options) {
 				{
 					test: /\.css$/,
 					use: ['to-string-loader', 'css-loader'],
-					include: /src\//,
-					exclude: /node_modules\//
+					include: helpers.root('src'),
+					exclude: helpers.root('node_modules')
 				},
 
 				/* Raw loader support for *.html
