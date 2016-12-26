@@ -117,7 +117,7 @@ module.exports = function (options) {
 						'awesome-typescript-loader',
 						'angular2-template-loader',
 						// 'angular2-load-children-loader'
-						// 'angular-router-loader'
+						'angular-router-loader'
 					],
 					exclude: [/\.(spec|e2e)\.ts$/]
 				},
