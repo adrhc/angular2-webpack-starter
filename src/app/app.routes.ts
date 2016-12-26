@@ -5,14 +5,6 @@ import { NoContentComponent } from './no-content';
 
 import { DataResolver } from './app.resolver';
 
-// needed by "doesn't work" code:
-// export function loadSubModule(): any {
-//   return require('es6-promise-loader!./+detail/index')('DetailModule');
-// }
-export function loadSubModule(): any {
-  return require('es6-promise-loader!./+detail')('DetailModule');
-}
-
 export const ROUTES: Routes = [
   { path: '',      component: HomeComponent },
   { path: 'home',  component: HomeComponent },
@@ -25,10 +17,12 @@ export const ROUTES: Routes = [
 
   // doesn't work
   // { path: 'detail', loadChildren: 'es6-promise-loader?,[name]!./+detail/index#DetailModule' },
-  { path: 'detail', loadChildren: loadSubModule },
 
   // doesn't work
   // { path: 'detail', loadChildren: () => require('./+detail/index')('DetailModule') },
+  { path: 'detail', loadChildren: () => require('./+detail')('DetailModule') },
+  // { path: 'detail', loadChildren: () => require('es6-promise-loader!./+detail/index')('DetailModule') },
+  // { path: 'detail', loadChildren: () => require('es6-promise-loader!./+detail')('DetailModule') },
 
   { path: '**',    component: NoContentComponent },
 ];
