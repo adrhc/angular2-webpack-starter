@@ -101,13 +101,13 @@ module.exports = function (env) {
        * taken from:
        * https://webpack.github.io/docs/long-term-caching.html#get-filenames-from-stats
        */
-      function() {
-        this.plugin("done", function(stats) {
-          require("fs").writeFileSync(
-            path.join(__dirname, "..", "stats.json"),
-            JSON.stringify(stats.toJson()));
-        });
-      },
+      // function() {
+      //   this.plugin("done", function(stats) {
+      //     require("fs").writeFileSync(
+      //       helpers.root("dist/stats.json"),
+      //       JSON.stringify(stats.toJson()));
+      //   });
+      // },
 
       /**
        * Plugin: DedupePlugin
