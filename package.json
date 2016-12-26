@@ -11,9 +11,9 @@
   "homepage": "https://github.com/angularclass/angular2-webpack-starter",
   "license": "MIT",
   "scripts": {
-    "build:dev": "webpack --config config/webpack.dev.js --progress --profile",
+    "build:dev": "webpack --colors --config config/webpack.dev.js --progress --profile",
     "build:docker": "npm run build:prod && docker build -t angular2-webpack-start:latest .",
-    "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --bail",
+    "build:prod": "webpack --colors --config config/webpack.prod.js  --progress --profile --bail",
     "build": "npm run build:dev",
     "ci": "npm run lint && npm test && npm run e2e",
     "clean:dist": "npm run rimraf -- dist",
@@ -92,6 +92,7 @@
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "^2.2.1",
     "bootstrap": "^3.3.7",
+    "chunk-manifest-webpack-plugin": "^1.0.0",
     "codelyzer": "~1.0.0-beta.4",
     "copy-webpack-plugin": "^4.0.0",
     "css-loader": "^0.26.0",
@@ -133,6 +134,7 @@
     "webpack": "2.1.0-beta.27",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "2.1.0-beta.11",
+    "webpack-manifest-plugin": "^1.1.0",
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "~1.0.1"
   },
