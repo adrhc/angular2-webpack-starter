@@ -330,13 +330,13 @@ module.exports = function (options) {
        * taken from:
        * https://webpack.github.io/docs/long-term-caching.html#get-filenames-from-stats
        */
-        function() {
-        this.plugin("done", function(stats) {
-          require("fs").writeFileSync(
-            helpers.root("stats.json"),
-            JSON.stringify(stats.toJson()));
-        });
-      },
+      //   function() {
+      //   this.plugin("done", function(stats) {
+      //     require("fs").writeFileSync(
+      //       helpers.root("stats.json"),
+      //       JSON.stringify(stats.toJson()));
+      //   });
+      // },
 
 			/**
 			 * Plugin LoaderOptionsPlugin (experimental)
