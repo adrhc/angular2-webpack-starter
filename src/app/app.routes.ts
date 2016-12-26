@@ -10,15 +10,15 @@ export const ROUTES: Routes = [
   { path: 'home',  component: HomeComponent },
   { path: 'about', component: AboutComponent },
   // Module PRELOAD setup:
-  // {
-  //   path: 'detail', loadChildren: () => System.import('./+detail')
-  //     .then((comp: any) => comp.default),
-  // },
+  {
+    path: 'detail', loadChildren: () => System.import('./+detail')
+      .then((comp: any) => comp.default),
+  },
 
   // doesn't work
   // { path: 'detail', loadChildren: 'es6-promise-loader?,[name]!./+detail/index#DetailModule' },
   // { path: 'detail', loadChildren: 'es6-promise-loader?,[name]!./+detail#DetailModule' },
-  { path: 'detail', loadChildren: 'es6-promise-loader!./+detail/index#DetailModule' },
+  // { path: 'detail', loadChildren: 'es6-promise-loader!./+detail/index#DetailModule' },
   // { path: 'detail', loadChildren: 'es6-promise-loader!./+detail#DetailModule' },
 
   // doesn't work
