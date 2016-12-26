@@ -98,18 +98,6 @@ module.exports = function (env) {
       new WebpackMd5Hash(),
 
       /**
-       * taken from:
-       * https://webpack.github.io/docs/long-term-caching.html#get-filenames-from-stats
-       */
-      function() {
-        this.plugin("done", function(stats) {
-          require("fs").writeFileSync(
-            helpers.root("stats.json"),
-            JSON.stringify(stats.toJson()));
-        });
-      },
-
-      /**
        * Plugin: DedupePlugin
        * Description: Prevents the inclusion of duplicate code into your bundle
        * and instead applies a copy of the function at runtime.
