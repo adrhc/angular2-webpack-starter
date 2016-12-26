@@ -107,7 +107,7 @@ module.exports = function (env) {
             path.join(__dirname, "..", "stats.json"),
             JSON.stringify(stats.toJson()));
         });
-      }
+      },
 
       /**
        * Plugin: DedupePlugin
