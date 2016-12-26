@@ -226,16 +226,17 @@ module.exports = function (options) {
       }),
 
       /**
-       * +detail module (e.g. detail.css) goes to 0.[chunkhash].chunk.js
-       * referred by webpack-runtime.[chunkhash].bundle.js
-       * When 0.[chunkhash].chunk.js change than
-       * webpack-runtime.[chunkhash].bundle.js also must change.
+       * +detail module (e.g. detail.css) goes to 0.[hash].chunk.js
+       * referred by webpack-runtime.[hash].bundle.js
+       * When 0.[hash].chunk.js change than
+       * webpack-runtime.[hash].bundle.js also must change.
        * ['webpack-runtime', 'polyfills', 'vendor'].reverse()
-       * in above CommonsChunkPlugin doesn't work!
+       * in above CommonsChunkPlugin doesn't work because will
+       * use filename: '[name].[chunkhash].bundle.js' (see webpack.prod.js).
        */
       new CommonsChunkPlugin({
         name: 'webpack-runtime',
-        filename: '[name].[chunkhash].bundle.js'
+        filename: '[name].[hash].bundle.js'
       }),
 
       /**
