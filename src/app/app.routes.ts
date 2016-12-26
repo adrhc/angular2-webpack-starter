@@ -9,6 +9,7 @@ export const ROUTES: Routes = [
   { path: '',      component: HomeComponent },
   { path: 'home',  component: HomeComponent },
   { path: 'about', component: AboutComponent },
+
   // Module PRELOAD setup:
   {
     path: 'detail', loadChildren: () => System.import('./+detail')
