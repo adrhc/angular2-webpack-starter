@@ -1,5 +1,6 @@
 .misc1, .miscAbout {
-	background-color: aqua;
-	border: solid red;
-	color: yellow;
+  background-color: aqua;
+  border: solid red;
+  color: yellow;
+  font-size: 19px;
 }

@@ -10,5 +10,6 @@
 
 :host {
   display: block;
-  border: dotted cornsilk;
+  border: dotted greenyellow;
+  font-size: 17px;
 }

@@ -221,11 +221,24 @@ module.exports = function (options) {
 			 * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
 			 * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
 			 */
-			new CommonsChunkPlugin({
-				name: ['polyfills', 'vendor'].reverse()
-			}),
+      new CommonsChunkPlugin({
+        name: ['polyfills', 'vendor'].reverse()
+      }),
 
-			/**
+      /**
+       * +detail module (e.g. detail.css) goes to 0.[chunkhash].chunk.js
+       * referred by webpack-runtime.[chunkhash].bundle.js
+       * When 0.[chunkhash].chunk.js change than
+       * webpack-runtime.[chunkhash].bundle.js also must change.
+       * ['webpack-runtime', 'polyfills', 'vendor'].reverse()
+       * in above CommonsChunkPlugin doesn't work!
+       */
+      new CommonsChunkPlugin({
+        name: 'webpack-runtime',
+        filename: '[name].[chunkhash].bundle.js'
+      }),
+
+      /**
 			 * Plugin: ContextReplacementPlugin
 			 * Description: Provides context to Angular's use of System.import
 			 *
