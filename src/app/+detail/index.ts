@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { DetailComponent } from './detail.component';
 
 console.log('`Detail` bundle loaded asynchronously');
+
+// AsyncRoute deprecated?
 // async components must be named routes for WebpackAsyncRoute
 // see https://github.com/AngularClass/webpack-toolkit
 // see README.md: How do I async load a component?
