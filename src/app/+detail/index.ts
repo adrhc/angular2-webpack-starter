@@ -7,6 +7,7 @@ import { DetailComponent } from './detail.component';
 
 console.log('`Detail` bundle loaded asynchronously');
 // async components must be named routes for WebpackAsyncRoute
+// see https://github.com/AngularClass/webpack-toolkit
 export const routes = [
   { path: '', component: DetailComponent, pathMatch: 'full' }
 ];
