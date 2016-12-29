@@ -34,10 +34,19 @@ buildProd() {
 	npm run build:prod
 }
 
-gomProdDeploy() {
-	git pull origin master
+prodDeploy() {
 	buildProd
 	deploy "$@"
+}
+
+gomProdDeploy() {
+	git pull origin master
+	prodDeploy
+}
+
+scripts() {
+	# search modules having webpack in peerDependencies
+	find node_modules/ -type f -name package.json -exec grep -A3 -nHr peerDependencies {} \; | grep -i "\"webpack\":"
 }
 
 $1 "$@"

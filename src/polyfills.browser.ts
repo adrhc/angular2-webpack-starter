@@ -33,6 +33,10 @@ import 'zone.js/dist/zone';
 // Typescript emit helpers polyfill
 import 'ts-helpers';
 
+// https://github.com/andyearnshaw/Intl.js/
+import 'intl';
+import 'intl/locale-data/complete';
+
 // Angular animations are built on top of the standard Web Animations
 // API and run natively on browsers that support it. For other browsers,
 // a polyfill is required. Grab web-animations.min.js from GitHub and add it to your page.

@@ -19,11 +19,11 @@ import { XLarge } from './x-large';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
+  public birthday: Date = new Date(2011, 11, 23);
   // Set our default values
   localState = { value: '' };
   // TypeScript public modifiers
   constructor(public appState: AppState, public title: Title) {
-
   }
 
   ngOnInit() {
