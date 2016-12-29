@@ -34,4 +34,10 @@ buildProd() {
 	npm run build:prod
 }
 
+gomProdDeploy() {
+	git pull origin master
+	buildProd
+	deploy "$@"
+}
+
 $1 "$@"
