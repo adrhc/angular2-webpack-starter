@@ -34,8 +34,8 @@ import 'zone.js/dist/zone';
 import 'ts-helpers';
 
 // https://github.com/andyearnshaw/Intl.js/
-import 'intl';
-import 'intl/locale-data/complete';
+// import 'intl';
+// import 'intl/locale-data/complete';
 
 // Angular animations are built on top of the standard Web Animations
 // API and run natively on browsers that support it. For other browsers,
