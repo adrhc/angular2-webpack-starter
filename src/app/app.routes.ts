@@ -6,7 +6,7 @@ import { NoContentComponent } from './no-content';
 import { DataResolver } from './app.resolver';
 
 export const ROUTES: Routes = [
-  { path: '',      component: HomeComponent },
+  // { path: '',      component: HomeComponent },
   { path: 'home',  component: HomeComponent },
   { path: 'about', component: AboutComponent },
 
@@ -34,5 +34,6 @@ export const ROUTES: Routes = [
   //   loadChildren: () => require('es6-promise-loader!./+detail')('DetailModule')
   // },
 
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**',    component: NoContentComponent },
 ];
