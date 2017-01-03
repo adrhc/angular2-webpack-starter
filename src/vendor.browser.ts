@@ -45,8 +45,6 @@ import 'css/ie10-viewport-bug-workaround';
 // require('expose?$!expose?jQuery!jquery');
 // require('bootstrap');
 
-import 'js/ie10-viewport-bug-workaround';
-
 if ('production' === ENV) {
   // Production
 

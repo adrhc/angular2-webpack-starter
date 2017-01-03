@@ -148,14 +148,6 @@ module.exports = function (options) {
           include: helpers.root('src/css')
         },
 
-        // e.g. ie10-viewport-bug-workaround.js
-        {
-          test: /\.js/,
-          loader: ['script-loader'],
-          exclude: helpers.root('node_modules'),
-          include: helpers.root('src/js')
-        },
-
 				/*
 				 * to string and css loader support for *.css files
 				 * Returns file content as string
@@ -316,6 +308,7 @@ module.exports = function (options) {
 			 * See: https://github.com/numical/script-ext-html-webpack-plugin
 			 */
 			new ScriptExtHtmlWebpackPlugin({
+        inline: ['assets/js/ie10-viewport-bug-workaround'],
 				defaultAttribute: 'defer'
 			}),
 
@@ -412,4 +405,4 @@ module.exports = function (options) {
 		}
 
 	};
-}
+};
