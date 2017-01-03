@@ -6,7 +6,8 @@ import { decorateModuleRef } from './app/environment';
 import { bootloader } from '@angularclass/hmr';
 
 // see also head-config.common.js
-// import 'assets/css/styles';
+// global css
+import 'css/styles';
 
 /*
  * App Module

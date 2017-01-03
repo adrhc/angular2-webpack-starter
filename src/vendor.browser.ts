@@ -25,6 +25,8 @@ import 'rxjs/add/operator/mergeMap';
 import 'bootstrap/dist/css/bootstrap';
 import 'bootstrap/dist/css/bootstrap-theme';
 
+import 'css/ie10-viewport-bug-workaround';
+
 // This uses expose-loader of webpack.
 // Install expose-loader by npm install expose-loader --save-dev.
 //
@@ -43,7 +45,7 @@ import 'bootstrap/dist/css/bootstrap-theme';
 // require('expose?$!expose?jQuery!jquery');
 // require('bootstrap');
 
-import 'css/ie10-viewport-bug-workaround';
+import 'js/ie10-viewport-bug-workaround';
 
 if ('production' === ENV) {
   // Production

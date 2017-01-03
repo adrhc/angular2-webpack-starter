@@ -15,7 +15,7 @@ import { AppState } from './app.service';
   selector: 'app',
   encapsulation: ViewEncapsulation.Emulated,
   styleUrls: [
-    './app.component.css', './styles.css'
+    './app.component.css'
   ],
   template: `
     <nav>
@@ -46,6 +46,8 @@ import { AppState } from './app.service';
 
     <main>
       <router-outlet></router-outlet>
+      <br>
+      <div class="miscApp">miscApp</div>
     </main>
 
     <br>
@@ -63,7 +65,6 @@ import { AppState } from './app.service';
       <img src="${require(`../images/test-image1.png`)}" width="75px">
       <img src="{{testImage1}}" width="75px">
     </address>
-
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
 
     <footer>

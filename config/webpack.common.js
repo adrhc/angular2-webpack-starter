@@ -140,11 +140,20 @@ module.exports = function (options) {
 					include: helpers.root('node_modules')
 				},
 
+        // e.g. ie10-viewport-bug-workaround.css
         {
           test: /\.css$/,
           loader: ['style-loader', 'css-loader'],
           exclude: helpers.root('node_modules'),
           include: helpers.root('src/css')
+        },
+
+        // e.g. ie10-viewport-bug-workaround.js
+        {
+          test: /\.js/,
+          loader: ['script-loader'],
+          exclude: helpers.root('node_modules'),
+          include: helpers.root('src/js')
         },
 
 				/*
@@ -336,6 +345,7 @@ module.exports = function (options) {
 				headTags: require('./head-config.common')
 			}),
 
+      // Make $ and jQuery available in every module without writing require("jquery").
       // new webpack.ProvidePlugin({
       //   // https://webpack.github.io/docs/shimming-modules.html
       //   $: "jquery",
