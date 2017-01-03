@@ -140,6 +140,13 @@ module.exports = function (options) {
 					include: helpers.root('node_modules')
 				},
 
+        {
+          test: /\.css$/,
+          loader: ['style-loader', 'css-loader'],
+          exclude: helpers.root('node_modules'),
+          include: helpers.root('src/css')
+        },
+
 				/*
 				 * to string and css loader support for *.css files
 				 * Returns file content as string
@@ -149,7 +156,7 @@ module.exports = function (options) {
 					test: /\.css$/,
 					use: ['to-string-loader', 'css-loader'],
 					include: helpers.root('src'),
-					exclude: helpers.root('node_modules')
+					exclude: [helpers.root('node_modules'), helpers.root('src/css')]
 				},
 
 				/* Raw loader support for *.html
@@ -328,6 +335,14 @@ module.exports = function (options) {
 			new HtmlElementsPlugin({
 				headTags: require('./head-config.common')
 			}),
+
+      // new webpack.ProvidePlugin({
+      //   // https://webpack.github.io/docs/shimming-modules.html
+      //   $: "jquery",
+      //   jQuery: "jquery",
+      //   jquery: "jquery",
+      //   "window.jQuery": "jquery"
+      // }),
 
       /**
        * taken from:

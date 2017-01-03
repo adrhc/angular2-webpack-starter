@@ -25,6 +25,26 @@ import 'rxjs/add/operator/mergeMap';
 import 'bootstrap/dist/css/bootstrap';
 import 'bootstrap/dist/css/bootstrap-theme';
 
+// This uses expose-loader of webpack.
+// Install expose-loader by npm install expose-loader --save-dev.
+//
+// Make $ and jQuery available in every module without writing require("jquery"):
+// new webpack.ProvidePlugin({
+//   jQuery: 'jquery',
+//   $: 'jquery',
+//   jquery: 'jquery'
+// })
+//
+// See also:
+// {test: require.resolve("jquery"), loader: "expose?$!expose?jQuery"}
+//
+// See also: https://webpack.github.io/docs/shimming-modules.html
+//
+// require('expose?$!expose?jQuery!jquery');
+// require('bootstrap');
+
+import 'css/ie10-viewport-bug-workaround';
+
 if ('production' === ENV) {
   // Production
 
