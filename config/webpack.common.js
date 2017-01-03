@@ -19,6 +19,7 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+// const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 /*
  * Webpack Constants
@@ -308,9 +309,11 @@ module.exports = function (options) {
 			 * See: https://github.com/numical/script-ext-html-webpack-plugin
 			 */
 			new ScriptExtHtmlWebpackPlugin({
-        inline: ['assets/js/ie10-viewport-bug-workaround'],
+        // inline: [/ie10-viewport-bug-workaround.js/],
 				defaultAttribute: 'defer'
 			}),
+
+      // new HtmlWebpackInlineSourcePlugin(),
 
 			/*
 			 * Plugin: HtmlElementsPlugin
