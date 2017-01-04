@@ -2,10 +2,7 @@
  * Angular 2 decorators and services
  */
 import { Component, ViewEncapsulation } from '@angular/core';
-
 import { AppState } from './app.service';
-
-// import testImage1 from 'file-loader!../images/test-image1.png';
 
 /*
  * App Component
@@ -20,8 +17,8 @@ import { AppState } from './app.service';
   template: `
     <nav>
       <span>
-        <a [routerLink]=" ['./'] ">
-          Index
+        <a [routerLink]=" ['./login'] ">
+          Login
         </a>
       </span>
       |
@@ -46,45 +43,31 @@ import { AppState } from './app.service';
 
     <main>
       <router-outlet></router-outlet>
-      <br>
       <div class="miscApp">miscApp</div>
     </main>
 
-    <br>
-    <address>
-      <strong>Twitter, Inc. <i class="glyphicon glyphicon-glass"></i></strong><br>
-      1355 Market Street, Suite 900<br>
-      San Francisco, CA 94103<br>
-      <abbr title="Phone">P:</abbr> (123) 456-7890
-    </address>
-    <address>
-      <strong>Bootstrap test</strong><br>
-      <a href="mailto:#">first.last@example.com</a>
-      <br>
-      <!-- webpack interpolation with $ { -->
-      <img src="${require(`../images/test-image1.png`)}" width="75px">
-      <img src="{{testImage1}}" width="75px">
-    </address>
-    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
+    <!-- webpack interpolation with $ { -->
+    <img src="${require(`images/reload3.jpg`)}" height="20px">
+    [app] using webpack interpolation with &#36;&#123;require(&#96;images/reload3.jpg&#96;)&#125; -> image-uri hash used!!!
+    
+    <pre class="app-state">[app] this.appState.state = {{ appState.state | json }}</pre>
 
     <footer>
       <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
       <div>
         <a [href]="url">
-          <img [src]="angularclassLogo" width="3%">
-        </a>
+          <img [src]="angularclassLogo" height="20px">
+        </a> [app] using in component: angularclassLogo = 'assets/img/angularclass-avatar.png'; -> NO image-uri hash used!!!
       </div>
     </footer>
   `
 })
 export class AppComponent {
-  testImage1 = require('images/test-image1.png');
-  angularclassLogo = 'assets/img/angularclass-avatar.png';
+  angularclassLogo = 'images/appConfig0Original.jpg';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
 
-  constructor(
-    public appState: AppState) {
+  constructor(public appState: AppState) {
 
   }
 

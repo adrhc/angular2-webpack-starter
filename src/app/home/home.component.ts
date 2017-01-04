@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { AppState } from '../app.service';
 import { Title } from './title';
-import { XLarge } from './x-large';
+import { AuthService } from '../login/auth.service';
 
 @Component({
   // The selector is what angular internally uses
@@ -19,11 +19,14 @@ import { XLarge } from './x-large';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  public birthday: Date = new Date(2011, 11, 23);
+  testImage1 = require('../../images/photoConfigOn1.jpg');
+  birthday: Date = new Date(2011, 11, 23);
   // Set our default values
   localState = { value: '' };
   // TypeScript public modifiers
-  constructor(public appState: AppState, public title: Title) {
+  constructor(public appState: AppState, public title: Title,
+              public authService: AuthService) {
+    console.log('HomeComponent: ' + new Date());
   }
 
   ngOnInit() {

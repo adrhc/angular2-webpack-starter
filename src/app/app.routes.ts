@@ -1,39 +1,21 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 
-import { DataResolver } from './app.resolver';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './login/auth-guard.service';
 
+// see preloadingStrategy for lazy loaded routes
 export const ROUTES: Routes = [
-  // { path: '',      component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'home',  component: HomeComponent },
   { path: 'about', component: AboutComponent },
-
-  // Module PRELOAD setup:
   {
-    path: 'detail', loadChildren: () => System.import('./+detail')
-      .then((comp: any) => comp.default),
+    path: 'detail',
+    loadChildren: () => System.import('./+detail').then((comp: any) => comp.default),
+    canActivate: [AuthGuard]
   },
-
-  // doesn't work
-  // { path: 'detail', loadChildren: 'es6-promise-loader?,[name]!./+detail/index#DetailModule' },
-  // { path: 'detail', loadChildren: 'es6-promise-loader?,[name]!./+detail#DetailModule' },
-  // { path: 'detail', loadChildren: 'es6-promise-loader!./+detail/index#DetailModule' },
-  // { path: 'detail', loadChildren: 'es6-promise-loader!./+detail#DetailModule' },
-
-  // doesn't work
-  // { path: 'detail', loadChildren: () => require('./+detail/index')('DetailModule') },
-  // { path: 'detail', loadChildren: () => require('./+detail')('DetailModule') },
-  // {
-  //   path: 'detail',
-  //   loadChildren: () => require('es6-promise-loader!./+detail/index')('DetailModule')
-  // },
-  // {
-  //   path: 'detail',
-  //   loadChildren: () => require('es6-promise-loader!./+detail')('DetailModule')
-  // },
-
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**',    component: NoContentComponent },
 ];

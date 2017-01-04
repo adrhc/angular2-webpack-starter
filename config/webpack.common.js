@@ -40,8 +40,8 @@ module.exports = function (options) {
 	isProd = options.env === 'production';
 	if (isProd) {
 		METADATA.baseUrl = '/a2ws/'
-	} else {
-    METADATA.baseUrl = '/a2wst/'
+	// } else {
+    // METADATA.baseUrl = '/a2wst/'
   }
 	return {
 		// required (output.publicPath) by html-elements-plugin below

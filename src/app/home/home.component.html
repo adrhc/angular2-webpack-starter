@@ -2,19 +2,6 @@
   <h1 x-large class="sample-content">Your Content Here</h1>
 
   <div>
-    For material design components use the <a href="https://github.com/AngularClass/angular2-webpack-starter/tree/material2"><b>material2</b></a> branch
-  </div>
-
-  <hr>
-
-  <div>
-    For hot module reloading run
-    <pre>npm run start:hmr</pre>
-  </div>
-
-  <hr>
-
-  <div>
     <h4>Local State</h4>
 
     <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
@@ -34,14 +21,28 @@
         <input type="text" name="textInput" [(ngModel)]="localState.value" autofocus>
       -->
 
-    <pre>this.localState = {{ localState | json }}</pre>
+    <br>
+    <pre>[app] this.localState = {{ localState | json }}</pre>
+    <pre>[home] this.authService = {{ authService | json }}</pre>
 
   </div>
-
 
   <div class="misc1">misc1 {{ birthday | date:'fullDate' }}</div>
   <div class="miscGlobal">miscGlobal</div>
   <div class="miscHome">miscHome</div>
-  <img src="../../images/test-image1.png" width="75px">
+  <img src="../../images/fullscreen-back2.jpg" height="20px"> [home] just a simple &lt;img src=...>
+  <br><br>
+  <address>
+    <strong>Twitter, Inc. <i class="glyphicon glyphicon-glass"></i></strong><br>
+    1355 Market Street, Suite 900<br>
+    San Francisco, CA 94103<br>
+    <abbr title="Phone">P:</abbr> (123) 456-7890
+  </address>
+  <address>
+    <strong>Bootstrap test</strong><br>
+    <a href="mailto:#">first.last@example.com</a>
+    <br>
+    <img src="{{testImage1}}" height="20px"> [home] using in component: testImage1 = require('../../images/photoConfigOn1.jpg');
+  </address>
 
 </div>
