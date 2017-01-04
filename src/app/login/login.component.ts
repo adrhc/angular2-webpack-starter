@@ -1,7 +1,7 @@
-import { Component, HostBinding }        from '@angular/core';
+import { Component }        from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
-import { slideInDownAnimation } from '../animations';
+// import { slideInDownAnimation } from '../animations';
 
 @Component({
   templateUrl: './login.html',
@@ -14,7 +14,8 @@ export class LoginComponent {
 
   message: string;
 
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(public authService: AuthService,
+              public router: Router) {
     console.log('LoginComponent: ' + new Date());
     this.setMessage();
   }
