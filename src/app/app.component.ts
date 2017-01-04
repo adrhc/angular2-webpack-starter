@@ -3,6 +3,7 @@
  */
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AppState } from './app.service';
+import { AuthService } from './login/auth.service';
 
 /*
  * App Component
@@ -18,7 +19,7 @@ import { AppState } from './app.service';
     <nav>
       <span>
         <a [routerLink]=" ['./login'] ">
-          Login
+          {{ authService.isLoggedIn ? 'Logout' : 'Login' }}
         </a>
       </span>
       |
@@ -67,7 +68,7 @@ export class AppComponent {
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
 
-  constructor(public appState: AppState) {
+  constructor(public appState: AppState, public authService: AuthService) {
 
   }
 
