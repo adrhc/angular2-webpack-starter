@@ -64,7 +64,7 @@ import { AuthService } from './login/auth.service';
   `
 })
 export class AppComponent {
-  angularclassLogo = 'images/appConfig0Original.jpg';
+  angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
 

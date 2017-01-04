@@ -61,8 +61,12 @@ module.exports = function (env) {
        * IMPORTANT: You must not specify an absolute path here!
        *
        * See: http://webpack.github.io/docs/configuration.html#output-filename
+       *
+       * https://webpack.github.io/docs/long-term-caching.html#option-1-one-hash-for-the-bundle
+       * [hash] generates a hash of all chunks
+       * [chunkhash] generates a hash per chunk
        */
-      filename: '[name].[chunkhash].bundle.js',
+      filename: '[name].[hash].bundle.js',
 
       /**
        * The filename of the SourceMaps for the JavaScript files.
@@ -70,7 +74,7 @@ module.exports = function (env) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
        */
-      sourceMapFilename: '[name].[chunkhash].bundle.map',
+      sourceMapFilename: '[name].[hash].bundle.map',
 
       /**
        * The filename of non-entry chunks as relative path
@@ -78,7 +82,7 @@ module.exports = function (env) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
        */
-      chunkFilename: '[id].[chunkhash].chunk.js'
+      chunkFilename: '[id].[hash].chunk.js'
 
     },
 
