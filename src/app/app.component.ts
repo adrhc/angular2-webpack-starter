@@ -65,15 +65,15 @@ import { Subscription } from 'rxjs';
         <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
         <div>
           <a [href]="url">
-            <img [src]="angularclassLogo" height="20px">
-          </a> [app] using in component: angularclassLogo = 'assets/img/angularclass-avatar.png'; -> NO image-uri hash used!!!
+            <img [src]="angularClassLogo" height="20px">
+          </a> [app] using in component: angularClassLogo = 'assets/img/angularclass-avatar.png'; -> NO image-uri hash used!!!
         </div>
       </footer>
     </div>
   `
 })
 export class AppComponent implements AfterContentInit {
-  angularclassLogo = 'assets/img/angularclass-avatar.png';
+  angularClassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
   subscription: Subscription;
