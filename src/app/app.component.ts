@@ -95,7 +95,7 @@ export class AppComponent implements AfterContentInit {
   }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+    console.log('[app] ngOnInit, Initial App State', this.appState.state);
     // otherwise this in "function (s)" is NOT AppComponent.this !!!
     let _this = this;
     this.subscription = this.router.events.subscribe(function (s) {

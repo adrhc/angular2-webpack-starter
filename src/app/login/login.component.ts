@@ -16,7 +16,7 @@ export class LoginComponent {
 
   constructor(public authService: AuthService,
               public router: Router) {
-    console.log('LoginComponent: ' + new Date());
+    console.log('constructor LoginComponent: ' + new Date());
     this.setMessage();
   }
 
