@@ -57,7 +57,7 @@ import { Subscription } from 'rxjs';
       <img src="${require(`images/reload3.jpg`)}" height="20px">
       [app] using webpack interpolation with &#36;&#123;require(&#96;images/reload3.jpg&#96;)&#125; -> image-uri hash used!!!
       <br>
-      <img src="assets/img/angularclass-avatar.png" height="20px"> [app] just a simple &lt;img src=...> -> NO image-uri hash used!!!
+      <img src="assets/img/angularclass-avatar.png" height="20px"> [app] just a simple &lt;img src="assets/img/angularclass-avatar.png"> -> NO image-uri hash used!!!
 
       <pre class="app-state">[app] this.appState.state = {{ appState.state | json }}</pre>
   
