@@ -76,22 +76,12 @@ export class AppComponent implements AfterContentInit {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
-  activeUrl: string;
   subscription: Subscription;
 
   constructor(public appState: AppState,
               public authService: AuthService,
               private router: Router) {
     console.log('constructor AppComponent');
-  }
-
-  ngOnDestroy() {
-    console.log('[app] ngOnDestroy: ');
-    this.subscription.unsubscribe();
-  }
-
-  ngAfterContentInit() {
-    console.log('[app] ngAfterContentInit: ');
   }
 
   ngOnInit() {
@@ -105,6 +95,15 @@ export class AppComponent implements AfterContentInit {
         _this.appState.set('activeUrl', s.urlAfterRedirects);
       }
     });
+  }
+
+  ngAfterContentInit() {
+    console.log('[app] ngAfterContentInit: ');
+  }
+
+  ngOnDestroy() {
+    console.log('[app] ngOnDestroy: ');
+    this.subscription.unsubscribe();
   }
 
 }
