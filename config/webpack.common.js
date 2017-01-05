@@ -141,13 +141,13 @@ module.exports = function (options) {
 					include: helpers.root('node_modules')
 				},
 
-        // e.g. ie10-viewport-bug-workaround.css
-        {
-          test: /\.css$/,
-          loader: ['style-loader', 'css-loader'],
-          exclude: helpers.root('node_modules'),
-          include: helpers.root('src/css')
-        },
+		        // e.g. ie10-viewport-bug-workaround.css
+		        {
+		          test: /\.css$/,
+		          loader: ['style-loader', 'css-loader'],
+		          exclude: helpers.root('node_modules'),
+		          include: helpers.root('src/css')
+		        },
 
 				/*
 				 * to string and css loader support for *.css files

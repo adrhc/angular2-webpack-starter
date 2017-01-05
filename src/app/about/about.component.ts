@@ -23,8 +23,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AboutComponent {
   localState: any;
-  constructor(public route: ActivatedRoute) {
 
+  constructor(public route: ActivatedRoute) {
+    console.log('constructor DetailComponent');
   }
 
   ngOnInit() {

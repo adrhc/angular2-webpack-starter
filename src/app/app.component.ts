@@ -50,12 +50,15 @@ import { Subscription } from 'rxjs';
       <router-outlet></router-outlet>
     </main>
 
-    <div [hidden]="!authService.isLoggedIn">
-      <div class="miscApp">miscApp, activeUrl: {{activeUrl}}</div>
+    <div [hidden]="appState.isLoginPageActive()">
+      <div class="miscApp">[app] miscApp, activeUrl: {{appState.get('activeUrl')}}</div>
+      
       <!-- webpack interpolation with $ { -->
       <img src="${require(`images/reload3.jpg`)}" height="20px">
       [app] using webpack interpolation with &#36;&#123;require(&#96;images/reload3.jpg&#96;)&#125; -> image-uri hash used!!!
-      
+      <br>
+      <img src="../images/favicon2.jpg" height="20px"> [app] just a simple &lt;img src=...> -> NO image-uri hash used!!!
+
       <pre class="app-state">[app] this.appState.state = {{ appState.state | json }}</pre>
   
       <footer>
@@ -79,13 +82,7 @@ export class AppComponent implements AfterContentInit {
   constructor(public appState: AppState,
               public authService: AuthService,
               private router: Router) {
-    this.subscription = router.events.subscribe(function (s) {
-      if (s instanceof NavigationEnd) {
-        this.activeUrl = s.urlAfterRedirects;
-        console.log('[app] s: activeUrl = ' + this.activeUrl);
-        console.log('[app] s: ' + JSON.stringify(s));
-      }
-    });
+    console.log('constructor AppComponent');
   }
 
   ngOnDestroy() {
@@ -99,6 +96,15 @@ export class AppComponent implements AfterContentInit {
 
   ngOnInit() {
     console.log('Initial App State', this.appState.state);
+    // otherwise this in "function (s)" is NOT AppComponent.this !!!
+    let _this = this;
+    this.subscription = this.router.events.subscribe(function (s) {
+      if (s instanceof NavigationEnd) {
+        // console.log('[app] s: activeUrl = ' + s.urlAfterRedirects);
+        // console.log('[app] s: ' + JSON.stringify(s));
+        _this.appState.set('activeUrl', s.urlAfterRedirects);
+      }
+    });
   }
 
 }

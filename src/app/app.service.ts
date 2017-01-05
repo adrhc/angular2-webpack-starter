@@ -6,7 +6,7 @@ export type InternalStateType = {
 
 @Injectable()
 export class AppState {
-  _state: InternalStateType = { };
+  _state: InternalStateType = {};
 
   constructor() {
 
@@ -16,11 +16,15 @@ export class AppState {
   get state() {
     return this._state = this._clone(this._state);
   }
+
   // never allow mutation
   set state(value) {
     throw new Error('do not mutate the `.state` directly');
   }
 
+  isLoginPageActive(): boolean {
+    return this.get('activeUrl') === '/login';
+  }
 
   get(prop?: any) {
     // use our state getter for the clone
@@ -36,6 +40,6 @@ export class AppState {
 
   private _clone(object: InternalStateType) {
     // simple object clone
-    return JSON.parse(JSON.stringify( object ));
+    return JSON.parse(JSON.stringify(object));
   }
 }

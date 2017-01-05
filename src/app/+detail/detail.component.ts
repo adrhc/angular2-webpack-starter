@@ -15,6 +15,7 @@ console.log('`Detail` component loaded asynchronously');
 })
 export class DetailComponent {
     constructor() {
+        console.log('constructor DetailComponent');
     }
 
     ngOnInit() {
