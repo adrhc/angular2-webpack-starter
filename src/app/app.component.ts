@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation, AfterContentInit } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AppState } from './app.service';
 import { AuthService } from './login/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
@@ -50,8 +50,8 @@ import { Subscription } from 'rxjs';
       <router-outlet></router-outlet>
     </main>
 
-    <div [hidden]="appState.isLoginPageActive()">
-      <div class="miscApp">[app] miscApp, activeUrl: {{appState.get('activeUrl')}}</div>
+    <div [hidden]="activeUrl === '/login'">
+      <div class="miscApp">[app] miscApp, activeUrl: {{activeUrl}}</div>
       
       <!-- webpack interpolation with $ { -->
       <img src="${require(`images/reload3.jpg`)}" height="20px">
@@ -72,33 +72,31 @@ import { Subscription } from 'rxjs';
     </div>
   `
 })
-export class AppComponent implements AfterContentInit {
+export class AppComponent {
   angularClassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
   subscription: Subscription;
+  activeUrl: string;
 
   constructor(public appState: AppState,
               public authService: AuthService,
               private router: Router) {
-    console.log('constructor AppComponent');
+    console.log('[app] constructor');
   }
 
   ngOnInit() {
     console.log('[app] ngOnInit, Initial App State', this.appState.state);
-    // otherwise this in "function (s)" is NOT AppComponent.this !!!
+    // "this" in "function (s)" is NOT AppComponent.this !!!
     let _this = this;
     this.subscription = this.router.events.subscribe(function (s) {
       if (s instanceof NavigationEnd) {
         // console.log('[app] s: activeUrl = ' + s.urlAfterRedirects);
         // console.log('[app] s: ' + JSON.stringify(s));
+        _this.activeUrl = s.urlAfterRedirects;
         _this.appState.set('activeUrl', s.urlAfterRedirects);
       }
     });
-  }
-
-  ngAfterContentInit() {
-    console.log('[app] ngAfterContentInit: ');
   }
 
   ngOnDestroy() {

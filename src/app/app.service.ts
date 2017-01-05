@@ -22,10 +22,6 @@ export class AppState {
     throw new Error('do not mutate the `.state` directly');
   }
 
-  isLoginPageActive(): boolean {
-    return this.get('activeUrl') === '/login';
-  }
-
   get(prop?: any) {
     // use our state getter for the clone
     const state = this.state;
