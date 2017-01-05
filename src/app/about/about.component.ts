@@ -25,7 +25,7 @@ export class AboutComponent {
   localState: any;
 
   constructor(public route: ActivatedRoute) {
-    console.log('constructor DetailComponent');
+    console.log('constructor AboutComponent');
   }
 
   ngOnInit() {
