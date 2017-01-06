@@ -21,26 +21,23 @@ import { Subscription } from 'rxjs';
     <nav>
     <span [hidden]="!authService.isLoggedIn">
       <span>
-        <a [routerLink]=" ['./login'] ">
+        <a [routerLink]=" ['./login'] " routerLinkActive="active">
           {{ authService.isLoggedIn ? 'Logout' : 'Login' }}
         </a>
       </span>
-      |
     </span>
       <span>
-        <a [routerLink]=" ['./home'] ">
+        <a [routerLink]=" ['./home'] " routerLinkActive="active">
           Home
         </a>
       </span>
-      |
       <span>
-        <a [routerLink]=" ['./detail'] ">
+        <a [routerLink]=" ['./detail'] " routerLinkActive="active">
           Detail
         </a>
       </span>
-      |
       <span>
-        <a [routerLink]=" ['./about'] ">
+        <a [routerLink]=" ['./about'] " routerLinkActive="active">
           About
         </a>
       </span>
