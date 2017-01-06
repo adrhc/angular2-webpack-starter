@@ -40,9 +40,9 @@ module.exports = function (options) {
 	isProd = options.env === 'production';
 	if (isProd) {
 		METADATA.baseUrl = '/a2ws/'
-	// } else {
-    // METADATA.baseUrl = '/a2wst/'
-  }
+		// } else {
+		// METADATA.baseUrl = '/a2wst/'
+	}
 	return {
 		// required (output.publicPath) by html-elements-plugin below
 		output: {
@@ -69,7 +69,7 @@ module.exports = function (options) {
 
 			'polyfills': './src/polyfills.browser.ts',
 			'vendor': './src/vendor.browser.ts',
-      // 'polyfills.vendor': './src/polyfills.vendor.ts',
+			// 'polyfills.vendor': './src/polyfills.vendor.ts',
 			'main': './src/main.browser.ts'
 
 		},
@@ -141,13 +141,13 @@ module.exports = function (options) {
 					include: helpers.root('node_modules')
 				},
 
-		        // e.g. ie10-viewport-bug-workaround.css
-		        {
-		          test: /\.css$/,
-		          loader: ['style-loader', 'css-loader'],
-		          exclude: helpers.root('node_modules'),
-		          include: helpers.root('src/css')
-		        },
+				// e.g. ie10-viewport-bug-workaround.css
+				{
+					test: /\.css$/,
+					loader: ['style-loader', 'css-loader'],
+					exclude: helpers.root('node_modules'),
+					include: helpers.root('src/css')
+				},
 
 				{
 					test: /\.less$/,
@@ -194,7 +194,10 @@ module.exports = function (options) {
 
 				// for bootstrap
 				{test: /\.png$/, loader: "url-loader?limit=100"},
-				{test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=1000&mimetype=application/vnd.ms-fontobject"},
+				{
+					test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+					loader: "url-loader?limit=1000&mimetype=application/vnd.ms-fontobject"
+				},
 				{test: /\.(woff|woff2)$/, loader: "url-loader?limit=1000&mimetype=application/font-woff"},
 				{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=1000&mimetype=application/octet-stream"},
 				{
@@ -239,30 +242,30 @@ module.exports = function (options) {
 			 * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
 			 * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
 			 */
-      new CommonsChunkPlugin({
-        name: ['polyfills', 'vendor'].reverse()
-        // name: 'polyfills.vendor'
-      }),
+			new CommonsChunkPlugin({
+				name: ['polyfills', 'vendor'].reverse()
+				// name: 'polyfills.vendor'
+			}),
 
-      /**
-       * +detail module (e.g. detail.css) goes to 0.[hash].chunk.js
-       * referred by webpack-runtime.[hash].bundle.js
-       * When 0.[hash].chunk.js change than
-       * webpack-runtime.[hash].bundle.js also must change.
-       * ['webpack-runtime', 'polyfills', 'vendor'].reverse()
-       * in above CommonsChunkPlugin doesn't work because will
-       * use filename: '[name].[chunkhash].bundle.js' (see webpack.prod.js).
-       *
-       * https://webpack.github.io/docs/long-term-caching.html#option-1-one-hash-for-the-bundle
-       * [hash] generates a hash of all chunks
-       * [chunkhash] generates a hash per chunk
-       */
-      new CommonsChunkPlugin({
-        name: 'webpack-runtime',
-        filename: '[name].[hash].bundle.js'
-      }),
+			/**
+			 * +detail module (e.g. detail.css) goes to 0.[hash].chunk.js
+			 * referred by webpack-runtime.[hash].bundle.js
+			 * When 0.[hash].chunk.js change than
+			 * webpack-runtime.[hash].bundle.js also must change.
+			 * ['webpack-runtime', 'polyfills', 'vendor'].reverse()
+			 * in above CommonsChunkPlugin doesn't work because will
+			 * use filename: '[name].[chunkhash].bundle.js' (see webpack.prod.js).
+			 *
+			 * https://webpack.github.io/docs/long-term-caching.html#option-1-one-hash-for-the-bundle
+			 * [hash] generates a hash of all chunks
+			 * [chunkhash] generates a hash per chunk
+			 */
+			new CommonsChunkPlugin({
+				name: 'webpack-runtime',
+				filename: '[name].[hash].bundle.js'
+			}),
 
-      /**
+			/**
 			 * Plugin: ContextReplacementPlugin
 			 * Description: Provides context to Angular's use of System.import
 			 *
@@ -316,11 +319,11 @@ module.exports = function (options) {
 			 * See: https://github.com/numical/script-ext-html-webpack-plugin
 			 */
 			new ScriptExtHtmlWebpackPlugin({
-        // inline: [/ie10-viewport-bug-workaround.js/],
+				// inline: [/ie10-viewport-bug-workaround.js/],
 				defaultAttribute: 'defer'
 			}),
 
-      // new HtmlWebpackInlineSourcePlugin(),
+			// new HtmlWebpackInlineSourcePlugin(),
 
 			/*
 			 * Plugin: HtmlElementsPlugin
@@ -348,26 +351,26 @@ module.exports = function (options) {
 				headTags: require('./head-config.common')
 			}),
 
-      // Make $ and jQuery available in every module without writing require("jquery").
-      // new webpack.ProvidePlugin({
-      //   // https://webpack.github.io/docs/shimming-modules.html
-      //   $: "jquery",
-      //   jQuery: "jquery",
-      //   jquery: "jquery",
-      //   "window.jQuery": "jquery"
-      // }),
+			// Make $ and jQuery available in every module without writing require("jquery").
+			// new webpack.ProvidePlugin({
+			//   // https://webpack.github.io/docs/shimming-modules.html
+			//   $: "jquery",
+			//   jQuery: "jquery",
+			//   jquery: "jquery",
+			//   "window.jQuery": "jquery"
+			// }),
 
-      /**
-       * taken from:
-       * https://webpack.github.io/docs/long-term-caching.html#get-filenames-from-stats
-       */
-      //   function() {
-      //   this.plugin("done", function(stats) {
-      //     require("fs").writeFileSync(
-      //       helpers.root("stats.json"),
-      //       JSON.stringify(stats.toJson()));
-      //   });
-      // },
+			/**
+			 * taken from:
+			 * https://webpack.github.io/docs/long-term-caching.html#get-filenames-from-stats
+			 */
+			//   function() {
+			//   this.plugin("done", function(stats) {
+			//     require("fs").writeFileSync(
+			//       helpers.root("stats.json"),
+			//       JSON.stringify(stats.toJson()));
+			//   });
+			// },
 
 			/**
 			 * Plugin LoaderOptionsPlugin (experimental)
