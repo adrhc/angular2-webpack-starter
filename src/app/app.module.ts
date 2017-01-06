@@ -22,6 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './login/auth-guard.service';
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
+import { InputAlertsComponent } from './gui/components/input-alerts.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -49,6 +50,7 @@ type StoreType = {
     AboutComponent,
     HomeComponent,
     NoContentComponent,
+    InputAlertsComponent,
     XLarge
   ],
   imports: [ // import Angular's modules
