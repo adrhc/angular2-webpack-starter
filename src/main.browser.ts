@@ -7,7 +7,7 @@ import { bootloader } from '@angularclass/hmr';
 
 // see also head-config.common.js
 // global css
-import 'css/styles';
+import 'less/jisr-default-theme';
 
 /*
  * App Module

@@ -88,7 +88,7 @@ module.exports = function (options) {
 			 *
 			 * css: required by bootstrap
 			 */
-			extensions: ['.ts', '.js', '.json', '.css'],
+			extensions: ['.ts', '.js', '.json', '.css', '.less'],
 
 			// An array of directory names to be resolved to the current directory
 			modules: [helpers.root('src'), helpers.root('node_modules')],
@@ -148,6 +148,13 @@ module.exports = function (options) {
 		          exclude: helpers.root('node_modules'),
 		          include: helpers.root('src/css')
 		        },
+
+				{
+					test: /\.less$/,
+					loaders: ['style-loader', 'css-loader', 'less-loader'],
+					exclude: helpers.root('node_modules'),
+					include: helpers.root('src/less')
+				},
 
 				/*
 				 * to string and css loader support for *.css files
