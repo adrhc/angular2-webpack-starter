@@ -1,1 +1,9 @@
-<div>asd</div>
+<div [hidden]="dontShowAlerts" class="alert alert-danger">
+  <div *ngFor="let alert of alerts">{{alert}}</div>
+</div>
+<!--<div [hidden]="dontShowAlerts" class="alert alert-danger">-->
+  <!--<template ngFor let-alert [ngForOf]="alerts">{{alert}}</template>-->
+<!--</div>-->
+<!--<template [ngIf]="!dontShowAlerts">-->
+  <!--<template ngFor let-alert [ngForOf]="alerts">{{alert}}</template>-->
+<!--</template>-->

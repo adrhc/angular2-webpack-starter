@@ -1,9 +1,10 @@
-import { Component }        from '@angular/core';
+import { Component, ViewEncapsulation }        from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 // import { slideInDownAnimation } from '../animations';
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
   // host: { '[@routeAnimation]': 'true' },
