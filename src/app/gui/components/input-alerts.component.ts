@@ -1,4 +1,4 @@
-import { Component, IterableDiffer, Input, KeyValueDiffers, ElementRef, HostBinding }        from '@angular/core';
+import { Component, IterableDiffer, Input, KeyValueDiffers, ElementRef }        from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import any = jasmine.any;
@@ -12,6 +12,12 @@ export class InputAlertsComponent {
   // @HostBinding('class') get classes() { return 'alert alert-danger'; }
   dontShowAlerts: boolean = true;
   alerts: string[];
+  private jqFormGroupElem: any;
+  private jqIcon: any;
+  private jqElemsToAlert: any[];
+  // private jqLabelElem: any;
+  // private jqInputElem: any;
+  // private focusCSS: string;
   private subscription: Subscription;
   private differ: IterableDiffer;
   private fakeObject: {data: any} = { data: undefined };
@@ -38,10 +44,13 @@ export class InputAlertsComponent {
   }
 
   private onFieldUpdate(data: any, alertsFor: NgModel): void {
-    this.alerts = [];
-    this.dontShowAlerts = alertsFor.valid || alertsFor.pristine;
-    // console.log(`data: ${JSON.stringify(data)}`);
     // console.log(`1. data: ${JSON.stringify(data)}, valid: ${alertsFor.valid}, invalid: ${alertsFor.invalid}, pristine: ${alertsFor.pristine}`);
+    this.alerts = [];
+    this.cssForStatus(alertsFor.valid ? 'has-success has-feedback' : 'has-error has-feedback');
+    this.dontShowAlerts = alertsFor.valid || alertsFor.pristine;
+    if (this.dontShowAlerts) {
+      return;
+    }
     this.fakeObject.data = data;
     // const changes = this.differ.diff(this.fakeObject);
     // if ( changes ) {
@@ -62,21 +71,121 @@ export class InputAlertsComponent {
     }
   }
 
-  private setUpLabel(alertsFor: NgModel): void {
-    const labelElem = this.elRef.nativeElement.parentElement.querySelector('label');
-    // console.log('[InputAlertsComponent] labelElem:');
-    // console.log(labelElem);
-    const inputElem = this.elRef.nativeElement.parentElement.querySelector(
-      '[name=' + alertsFor.name + ']');
-    // console.log('[InputAlertsComponent] inputElem:');
-    // console.log(inputElem);
-    let labelElemText: string;
-    if (labelElem) {
-      labelElemText = labelElem.innerText || labelElem.textContent
+  /* dealing with focus
+  private cacheThenRemoveCSS(target: EventTarget): void {
+    const jqElem = $(target);
+    if (jqElem.hasClass('has-success')) {
+      this.focusCSS = 'has-success has-feedback';
     }
-    this.label = labelElemText ? labelElemText : inputElem.placeholder;
-    // console.log(`[InputAlertsComponent] inputElem.placeholder: ${inputElem.placeholder}`);
-    // console.log(`[InputAlertsComponent] this.label: ${this.label}`);
+    if (jqElem.hasClass('has-error')) {
+      this.focusCSS = 'has-error has-feedback';
+    }
+    if (this.jqFormGroupElem) {
+      this.jqFormGroupElem.removeClass(this.focusCSS);
+    } else if (this.jqLabelElem) {
+      this.jqLabelElem.removeClass(this.focusCSS);
+    }
+    jqElem.removeClass(this.focusCSS);
+  }
+
+  private restoreCSS(target: EventTarget): void {
+    if (!this.focusCSS) {
+      return;
+    }
+    const jqElem = $(target);
+    if (this.jqFormGroupElem) {
+      this.jqFormGroupElem.addClass(this.focusCSS);
+      return;
+    }
+    if (this.jqLabelElem) {
+      this.jqLabelElem.addClass(this.focusCSS);
+    }
+    jqElem.addClass(this.focusCSS);
+  }
+
+  private onFocus(eventObject: Event): void {
+    // console.log('[InputAlertsComponent] onFocus:');
+    // console.log(eventObject.target);
+    this.cacheThenRemoveCSS(eventObject.target);
+  }
+
+  private onBlur(eventObject: Event): void {
+    // console.log('[InputAlertsComponent] onBlur:');
+    // console.log(eventObject.target);
+    this.restoreCSS(eventObject.target);
+  }
+  */
+
+  private cssForStatus(css: string): void {
+    // dealing with focus
+    // this.focusCSS = css;
+    // if (this.jqInputElem.is(':focus')) {
+    //   return;
+    // }
+
+    const success: boolean = css.includes('has-success');
+    const classToRemove: string = success ? 'has-error has-feedback' : 'has-success has-feedback';
+    if (this.jqIcon) {
+      // optional feedback icon
+      this.jqIcon.removeClass(success ? 'glyphicon-remove' : 'glyphicon-ok');
+      this.jqIcon.addClass(success ? 'glyphicon-ok' : 'glyphicon-remove');
+    }
+    if (this.jqFormGroupElem) {
+      // form-group
+      this.jqFormGroupElem.removeClass(classToRemove);
+      this.jqFormGroupElem.addClass(css);
+    } else {
+      // input and optional label
+      for (let elem of this.jqElemsToAlert) {
+        elem.removeClass(classToRemove);
+        elem.addClass(css);
+      }
+    }
+  }
+
+  private setUpLabel(alertsFor: NgModel): void {
+    this.jqElemsToAlert = [];
+    const jqAlertsElem = $(this.elRef.nativeElement);
+    // console.log('this.elRef.nativeElement: ' + jqAlertsElem.prop('tagName'));
+
+    this.jqFormGroupElem = jqAlertsElem.closest('.form-group');
+    if (!this.jqFormGroupElem.length) {
+      this.jqFormGroupElem = null;
+    // } else {
+    //   console.log(`[InputAlertsComponent] jqFormGroupElem: tagName = ${this.jqFormGroupElem.prop('tagName')}, class = ${this.jqFormGroupElem.attr('class')}`);
+    }
+
+    const jqInputGroup = jqAlertsElem.prevAll('.input-group:first');
+    let jqInputElem: any;
+    if (jqInputGroup.length) {
+      jqInputElem = jqInputGroup.children('[name=' + alertsFor.name + ']:first');
+      // console.log(`[InputAlertsComponent] jqInputGroup: tagName = ${jqInputGroup.prop('tagName')}, class = ${jqInputGroup.attr('class')}`);
+    } else {
+      jqInputElem = jqAlertsElem.prevAll('[name=' + alertsFor.name + ']:first');
+      // console.log('[InputAlertsComponent] jqInputElem:');
+      // console.log(`[InputAlertsComponent] jqInputElem: val = ${this.jqInputElem.val()}, tagName = ${this.jqInputElem.prop('tagName')}, class = ${this.jqInputElem.attr('class')}`);
+    }
+    this.jqElemsToAlert.push(jqInputElem);
+
+    const jqLabelElem = jqAlertsElem.prevAll('label:first');
+    let labelElemText: string;
+    if (jqLabelElem.length) {
+      // console.log(`[InputAlertsComponent] jqLabelElem: html = ${this.jqLabelElem.html()}, tagName = ${this.jqLabelElem.prop('tagName')}, for = ${this.jqLabelElem.attr('for')}, class = ${this.jqLabelElem.attr('class')}`);
+      labelElemText = jqLabelElem.val();
+      this.jqElemsToAlert.push(jqLabelElem);
+    }
+    this.label = labelElemText ? labelElemText : jqInputElem.attr('placeholder');
+
+    this.jqIcon = jqAlertsElem.prevAll('.form-control-feedback:first');
+    if (!this.jqIcon.length) {
+      this.jqIcon = null;
+    // } else {
+    //   console.log(`[InputAlertsComponent] jqIcon: tagName = ${this.jqIcon.prop('tagName')}, class = ${this.jqIcon.attr('class')}`);
+    }
+
+    // dealing with focus
+    // this.jqInputElem.focusin((eventObject: Event) => this.onFocus(eventObject));
+    // this.jqInputElem.focusout((eventObject: Event) => this.onBlur(eventObject));
   }
 
 }

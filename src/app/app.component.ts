@@ -79,11 +79,11 @@ export class AppComponent {
   constructor(public appState: AppState,
               public authService: AuthService,
               private router: Router) {
-    console.log('[app] constructor');
+    // console.log('[app] constructor');
   }
 
   ngOnInit() {
-    console.log('[app] ngOnInit, Initial App State', this.appState.state);
+    // console.log('[app] ngOnInit, Initial App State', this.appState.state);
     // "this" in "function (s)" is NOT AppComponent.this !!!
     let _this = this;
     this.subscription = this.router.events.subscribe(function (s) {
@@ -97,7 +97,7 @@ export class AppComponent {
   }
 
   ngOnDestroy() {
-    console.log('[app] ngOnDestroy: ');
+    // console.log('[app] ngOnDestroy: ');
     this.subscription.unsubscribe();
   }
 

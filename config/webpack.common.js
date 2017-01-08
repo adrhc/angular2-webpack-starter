@@ -352,13 +352,13 @@ module.exports = function (options) {
 			}),
 
 			// Make $ and jQuery available in every module without writing require("jquery").
-			// new webpack.ProvidePlugin({
-			//   // https://webpack.github.io/docs/shimming-modules.html
-			//   $: "jquery",
-			//   jQuery: "jquery",
-			//   jquery: "jquery",
-			//   "window.jQuery": "jquery"
-			// }),
+			new webpack.ProvidePlugin({
+			  // https://webpack.github.io/docs/shimming-modules.html
+			  $: "jquery",
+			  jQuery: "jquery",
+			  jquery: "jquery",
+			  "window.jQuery": "jquery"
+			}),
 
 			/**
 			 * taken from:

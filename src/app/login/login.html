@@ -3,23 +3,19 @@
     <h2 class="form-login-heading">Login to Your Account</h2>
 
     <div class="form-group">
-      <label for="inputUser" class="sr-only">User</label>
+      <label class="control-label sr-only" for="inputUser">User</label>
       <input type="text" id="inputUser" class="form-control" placeholder="User"
              [(ngModel)]="authService.userName" name="userName" #userNameRef="ngModel"
              required autofocus>
-      <!--<div [hidden]="userNameRef.valid || userNameRef.pristine" class="alert alert-danger">-->
-        <!--User is required-->
-      <!--</div>-->
+      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
       <alerts [for]="userNameRef"></alerts>
     </div>
 
     <div class="form-group">
-      <label for="inputPassword" class="sr-only">Password</label>
+      <label class="control-label sr-only" for="inputPassword">Password</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password"
              [(ngModel)]="authService.password" name="password" #passwordRef="ngModel" required>
-      <!--<div [hidden]="passwordRef.valid || passwordRef.pristine" class="alert alert-danger">-->
-        <!--Password is required-->
-      <!--</div>-->
+      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
       <alerts [for]="passwordRef"></alerts>
     </div>
 
