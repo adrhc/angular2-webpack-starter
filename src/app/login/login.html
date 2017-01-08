@@ -20,15 +20,12 @@
     </div>
 
     <button class="btn btn-lg btn-primary btn-block" (click)="login()"
-            [disabled]="!loginForm.form.valid" type="button"
-            *ngIf="!authService.isLoggedIn">Login</button>
-    <button class="btn btn-lg btn-primary btn-block" (click)="logout()"
-            *ngIf="authService.isLoggedIn" type="button">Logout</button>
+            [disabled]="!loginForm.form.valid" type="button">Login</button>
   </div>
   <div  [hidden]="!authService.isLoggedIn">
     <h2 class="form-login-heading">Logged in with {{authService.userName}}</h2>
     <br>
-    <button class="btn btn-lg btn-primary btn-block" (click)="logout()"
-            *ngIf="authService.isLoggedIn" type="button">Logout</button>
+    <button class="btn btn-lg btn-primary btn-block"
+            (click)="logout()" type="button">Logout</button>
   </div>
 </form>
