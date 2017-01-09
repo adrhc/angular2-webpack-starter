@@ -1,5 +1,5 @@
 <span class="glyphicon form-control-feedback"
-      [style.display]="internalIconDisplay" aria-hidden="true"></span>
+      [style.display]="useInternalGlyphicon ? 'inline' : 'none'" aria-hidden="true"></span>
 <div [hidden]="dontShowAlerts" class="alert alert-danger">
   <div *ngFor="let alert of alerts">{{alert}}</div>
 </div>

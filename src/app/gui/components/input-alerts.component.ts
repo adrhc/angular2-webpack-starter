@@ -12,7 +12,7 @@ export class InputAlertsComponent {
   // @HostBinding('class') get classes() { return 'alert alert-danger'; }
   dontShowAlerts: boolean = true;
   alerts: string[];
-  internalIconDisplay: string = 'none';
+  useInternalGlyphicon: boolean;
   private jqFormGroupElem: any;
   private jqIcon: any;
   private jqElemsToAlert: any[];
@@ -184,7 +184,7 @@ export class InputAlertsComponent {
     this.jqIcon = jqAlertsElem.prevAll('.form-control-feedback:first');
     if ( !this.jqIcon.length ) {
       this.jqIcon = jqAlertsElem.children('.form-control-feedback:first');
-      this.internalIconDisplay = 'inline';
+      this.useInternalGlyphicon = true;
     }
     // console.log(`[InputAlertsComponent] jqIcon: tagName = ${this.jqIcon.prop('tagName')}, class = ${this.jqIcon.attr('class')}`);
 
