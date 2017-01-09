@@ -7,7 +7,7 @@
       <input type="text" id="inputUser" class="form-control" placeholder="User"
              [(ngModel)]="authService.userName" name="userName" #userNameRef="ngModel"
              required autofocus>
-      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+      <!--<span class="glyphicon form-control-feedback" aria-hidden="true"></span>-->
       <alerts [for]="userNameRef"></alerts>
     </div>
 
@@ -15,7 +15,7 @@
       <label class="control-label sr-only" for="inputPassword">Password</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password"
              [(ngModel)]="authService.password" name="password" #passwordRef="ngModel" required>
-      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+      <!--<span class="glyphicon form-control-feedback" aria-hidden="true"></span>-->
       <alerts [for]="passwordRef"></alerts>
     </div>
 
