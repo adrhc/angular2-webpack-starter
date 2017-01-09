@@ -1,14 +1,17 @@
-import { Component, IterableDiffer, Input, KeyValueDiffers, ElementRef }        from '@angular/core';
+import {
+  Component, IterableDiffer, Input, KeyValueDiffers, ElementRef, ViewContainerRef,
+  TemplateRef
+}        from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import any = jasmine.any;
 
 @Component({
-  selector: 'alerts',
-  // styleUrls: ['./input-alerts.css'],
-  templateUrl: './input-alerts.html'
+  selector: 'validations',
+  // styleUrls: ['./validation-alerts.css'],
+  templateUrl: './validation-alerts.html'
 })
-export class InputAlertsComponent {
+export class ValidationAlertsComponent {
   // @HostBinding('class') get classes() { return 'alert alert-danger'; }
   dontShowAlerts: boolean = true;
   alerts: string[];
@@ -27,13 +30,20 @@ export class InputAlertsComponent {
     required: ' is required'
   };
 
+  private static prependGlypicon(jqElem: any): any {
+    let jqIcon: any = jQuery.parseHTML(
+      '<span class="glyphicon form-control-feedback" aria-hidden="true"></span>');
+    jqIcon = $(jqIcon);
+    return jqIcon.insertBefore(jqElem);
+  }
+
   constructor(differs: KeyValueDiffers, private elRef: ElementRef) {
     this.differ = differs.find({}).create(null);
   }
 
   @Input('for')
   set alertsFor(alertsFor: NgModel) {
-    // console.log('[InputAlertsComponent] alertsFor');
+    // console.log('[ValidationAlertsComponent] alertsFor');
     // console.log(alertsFor);
     this.setUpLabel(alertsFor);
     this.subscription = alertsFor.valueChanges.subscribe(data => this.onFieldUpdate(data, alertsFor));
@@ -105,13 +115,13 @@ export class InputAlertsComponent {
    }
 
    private onFocus(eventObject: Event): void {
-   // console.log('[InputAlertsComponent] onFocus:');
+   // console.log('[ValidationAlertsComponent] onFocus:');
    // console.log(eventObject.target);
    this.cacheThenRemoveCSS(eventObject.target);
    }
 
    private onBlur(eventObject: Event): void {
-   // console.log('[InputAlertsComponent] onBlur:');
+   // console.log('[ValidationAlertsComponent] onBlur:');
    // console.log(eventObject.target);
    this.restoreCSS(eventObject.target);
    }
@@ -154,7 +164,7 @@ export class InputAlertsComponent {
     if ( !this.jqFormGroupElem.length ) {
       this.jqFormGroupElem = null;
       // } else {
-      //   console.log(`[InputAlertsComponent] jqFormGroupElem: tagName = ${this.jqFormGroupElem.prop('tagName')}, class = ${this.jqFormGroupElem.attr('class')}`);
+      //   console.log(`[ValidationAlertsComponent] jqFormGroupElem: tagName = ${this.jqFormGroupElem.prop('tagName')}, class = ${this.jqFormGroupElem.attr('class')}`);
     }
 
     // preparing the input using the input-group if any
@@ -162,11 +172,11 @@ export class InputAlertsComponent {
     let jqInputElem: any;
     if ( jqInputGroup.length ) {
       jqInputElem = jqInputGroup.children('[name=' + alertsFor.name + ']:first');
-      // console.log(`[InputAlertsComponent] jqInputGroup: tagName = ${jqInputGroup.prop('tagName')}, class = ${jqInputGroup.attr('class')}`);
+      // console.log(`[ValidationAlertsComponent] jqInputGroup: tagName = ${jqInputGroup.prop('tagName')}, class = ${jqInputGroup.attr('class')}`);
     } else {
       jqInputElem = jqAlertsElem.prevAll('[name=' + alertsFor.name + ']:first');
-      // console.log('[InputAlertsComponent] jqInputElem:');
-      // console.log(`[InputAlertsComponent] jqInputElem: val = ${this.jqInputElem.val()}, tagName = ${this.jqInputElem.prop('tagName')}, class = ${this.jqInputElem.attr('class')}`);
+      // console.log('[ValidationAlertsComponent] jqInputElem:');
+      // console.log(`[ValidationAlertsComponent] jqInputElem: val = ${this.jqInputElem.val()}, tagName = ${this.jqInputElem.prop('tagName')}, class = ${this.jqInputElem.attr('class')}`);
     }
     this.jqElemsToAlert.push(jqInputElem);
 
@@ -174,7 +184,7 @@ export class InputAlertsComponent {
     const jqLabelElem = jqAlertsElem.prevAll('label:first');
     let labelElemText: string;
     if ( jqLabelElem.length ) {
-      // console.log(`[InputAlertsComponent] jqLabelElem: html = ${this.jqLabelElem.html()}, tagName = ${this.jqLabelElem.prop('tagName')}, for = ${this.jqLabelElem.attr('for')}, class = ${this.jqLabelElem.attr('class')}`);
+      // console.log(`[ValidationAlertsComponent] jqLabelElem: html = ${this.jqLabelElem.html()}, tagName = ${this.jqLabelElem.prop('tagName')}, for = ${this.jqLabelElem.attr('for')}, class = ${this.jqLabelElem.attr('class')}`);
       labelElemText = jqLabelElem.val();
       this.jqElemsToAlert.push(jqLabelElem);
     }
@@ -183,10 +193,11 @@ export class InputAlertsComponent {
     // preparing glyphicon form-control-feedback
     this.jqIcon = jqAlertsElem.prevAll('.form-control-feedback:first');
     if ( !this.jqIcon.length ) {
-      this.jqIcon = jqAlertsElem.children('.form-control-feedback:first');
-      this.useInternalGlyphicon = true;
+      // this.jqIcon = jqAlertsElem.children('.form-control-feedback:first');
+      // this.useInternalGlyphicon = true;
+      this.jqIcon = ValidationAlertsComponent.prependGlypicon(jqAlertsElem);
     }
-    // console.log(`[InputAlertsComponent] jqIcon: tagName = ${this.jqIcon.prop('tagName')}, class = ${this.jqIcon.attr('class')}`);
+    // console.log(`[ValidationAlertsComponent] jqIcon: tagName = ${this.jqIcon.prop('tagName')}, class = ${this.jqIcon.attr('class')}`);
 
     // dealing with focus
     // this.jqInputElem.focusin((eventObject: Event) => this.onFocus(eventObject));

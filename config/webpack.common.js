@@ -133,27 +133,34 @@ module.exports = function (options) {
 					use: 'json-loader'
 				},
 
+				{
+					test: /\.less$/,
+					loaders: ['style-loader', 'css-loader', 'less-loader'],
+					include: helpers.root('src/less'),
+					exclude: helpers.root('node_modules')
+				},
+
+				{
+					test: /\.less$/,
+					loaders: ['to-string-loader', 'css-loader', 'less-loader'],
+					include: helpers.root('src'),
+					exclude: [helpers.root('node_modules'), helpers.root('src/less')]
+				},
+
 				// for bootstrap (before other css tests)
 				{
 					test: /\.css$/,
 					loader: ['style-loader', 'css-loader'],
-					exclude: helpers.root('src'),
-					include: helpers.root('node_modules')
+					include: helpers.root('node_modules/bootstrap'),
+					exclude: helpers.root('src')
 				},
 
 				// e.g. ie10-viewport-bug-workaround.css
 				{
 					test: /\.css$/,
 					loader: ['style-loader', 'css-loader'],
-					exclude: helpers.root('node_modules'),
-					include: helpers.root('src/css')
-				},
-
-				{
-					test: /\.less$/,
-					loaders: ['style-loader', 'css-loader', 'less-loader'],
-					exclude: helpers.root('node_modules'),
-					include: helpers.root('src/less')
+					include: helpers.root('src/css'),
+					exclude: helpers.root('node_modules')
 				},
 
 				/*
