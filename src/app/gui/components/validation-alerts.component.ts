@@ -1,6 +1,5 @@
 import {
-  Component, IterableDiffer, Input, KeyValueDiffers, ElementRef, ViewContainerRef,
-  TemplateRef
+  Component, IterableDiffer, Input, KeyValueDiffers, ElementRef
 }        from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -12,10 +11,10 @@ import any = jasmine.any;
   templateUrl: './validation-alerts.html'
 })
 export class ValidationAlertsComponent {
-  // @HostBinding('class') get classes() { return 'alert alert-danger'; }
-  dontShowAlerts: boolean = true;
-  alerts: string[];
-  useInternalGlyphicon: boolean;
+  showAlerts: boolean = false;
+  // alerts: string[];
+  label: string;
+  _alertsFor: NgModel;
   private jqFormGroupElem: any;
   private jqIcon: any;
   private jqElemsToAlert: any[];
@@ -25,16 +24,15 @@ export class ValidationAlertsComponent {
   private subscription: Subscription;
   private differ: IterableDiffer;
   private fakeObject: {data: any} = { data: undefined };
-  private label: string;
-  private messages: {[key: string]: any} = {
-    required: ' is required'
-  };
+  // private messages: {[key: string]: any} = {
+  //   required: ' is required'
+  // };
 
-  private static prependGlypicon(jqElem: any): any {
+  private static appendGlypicon(jqInputElem: any): any {
     let jqIcon: any = jQuery.parseHTML(
       '<span class="glyphicon form-control-feedback" aria-hidden="true"></span>');
     jqIcon = $(jqIcon);
-    return jqIcon.insertBefore(jqElem);
+    return jqIcon.insertAfter(jqInputElem);
   }
 
   constructor(differs: KeyValueDiffers, private elRef: ElementRef) {
@@ -43,6 +41,7 @@ export class ValidationAlertsComponent {
 
   @Input('for')
   set alertsFor(alertsFor: NgModel) {
+    this._alertsFor = alertsFor;
     // console.log('[ValidationAlertsComponent] alertsFor');
     // console.log(alertsFor);
     this.setUpLabel(alertsFor);
@@ -56,13 +55,13 @@ export class ValidationAlertsComponent {
 
   private onFieldUpdate(data: any, alertsFor: NgModel): void {
     // console.log(`1. data: ${JSON.stringify(data)}, valid: ${alertsFor.valid}, invalid: ${alertsFor.invalid}, pristine: ${alertsFor.pristine}`);
-    this.alerts = [];
+    // this.alerts = [];
     this.cssForStatus(alertsFor.valid ? 'has-success has-feedback' : 'has-error has-feedback');
-    this.dontShowAlerts = alertsFor.valid || alertsFor.pristine;
-    if ( this.dontShowAlerts ) {
-      return;
-    }
-    this.fakeObject.data = data;
+    this.showAlerts = !alertsFor.valid && !alertsFor.pristine && alertsFor.errors !== {};
+    // if ( this.dontShowAlerts ) {
+    //   return;
+    // }
+    // this.fakeObject.data = data;
     // const changes = this.differ.diff(this.fakeObject);
     // if ( changes ) {
     //   console.log(`changes detected for ${alertsFor.name}:`);
@@ -70,16 +69,16 @@ export class ValidationAlertsComponent {
     //   changes.forEachAddedItem(r => console.log('added ' + r.currentValue));
     //   changes.forEachRemovedItem(r => console.log('removed ' + r.currentValue));
     // }
-    if ( alertsFor.errors ) {
-      // console.log(`2. data: ${JSON.stringify(data)}, valid: ${alertsFor.valid}, invalid: ${alertsFor.invalid}, pristine: ${alertsFor.pristine}`);
-      // console.log(`2. alertsFor.errors: ${JSON.stringify(alertsFor.errors)}`);
-      for (const key in alertsFor.errors) {
-        if ( alertsFor.errors.hasOwnProperty(key) ) {
-          // console.log(`${key}: ${alertsFor.errors[key]}`);
-          this.alerts.push(this.label + this.messages[key]);
-        }
-      }
-    }
+    // if ( alertsFor.errors ) {
+    //   // console.log(`2. data: ${JSON.stringify(data)}, valid: ${alertsFor.valid}, invalid: ${alertsFor.invalid}, pristine: ${alertsFor.pristine}`);
+    //   // console.log(`2. alertsFor.errors: ${JSON.stringify(alertsFor.errors)}`);
+    //   for (const key in alertsFor.errors) {
+    //     if ( alertsFor.errors.hasOwnProperty(key) ) {
+    //       // console.log(`${key}: ${alertsFor.errors[key]}`);
+    //       this.alerts.push(this.label + this.messages[key]);
+    //     }
+    //   }
+    // }
   }
 
   /* dealing with focus
@@ -195,7 +194,7 @@ export class ValidationAlertsComponent {
     if ( !this.jqIcon.length ) {
       // this.jqIcon = jqAlertsElem.children('.form-control-feedback:first');
       // this.useInternalGlyphicon = true;
-      this.jqIcon = ValidationAlertsComponent.prependGlypicon(jqAlertsElem);
+      this.jqIcon = ValidationAlertsComponent.appendGlypicon(jqInputElem);
     }
     // console.log(`[ValidationAlertsComponent] jqIcon: tagName = ${this.jqIcon.prop('tagName')}, class = ${this.jqIcon.attr('class')}`);
 

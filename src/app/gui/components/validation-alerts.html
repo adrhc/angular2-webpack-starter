@@ -1,7 +1,10 @@
 <!--<span class="glyphicon form-control-feedback"-->
       <!--[style.display]="useInternalGlyphicon ? 'inline' : 'none'" aria-hidden="true"></span>-->
-<div [hidden]="dontShowAlerts" class="alert alert-danger">
-  <div *ngFor="let alert of alerts">{{alert}}</div>
+<!--<div [hidden]="dontShowAlerts" class="alert alert-danger">-->
+  <!--<div *ngFor="let alert of alerts">{{alert}}</div>-->
+<!--</div>-->
+<div *ngIf="showAlerts" class="alert alert-danger">
+  <div *ngIf="_alertsFor.errors['required']">{{this.label}} <ng-container i18n>is required</ng-container></div>
 </div>
 <!--<div [hidden]="dontShowAlerts" class="alert alert-danger">-->
   <!--<template ngFor let-alert [ngForOf]="alerts">{{alert}}</template>-->

@@ -1,34 +1,33 @@
 <div [hidden]="authService.isLoggedIn" style="margin: auto"
      [style.display]="authService.isLoggedIn ? 'none' : 'table'">
 	<form class="form-login" #loginForm="ngForm">
-		<h2 class="form-login-heading">Login to Your Account</h2>
+		<h2 class="form-login-heading" i18n>Login to Your Account</h2>
 
 		<div class="form-group">
-			<label class="control-label sr-only" for="inputUser">User</label>
-			<input type="text" id="inputUser" class="form-control" placeholder="User"
-			       [(ngModel)]="authService.userName" name="userName" #userNameRef="ngModel"
-			       required autofocus>
+			<label class="control-label sr-only" for="inputUser" i18n>User</label>
+			<input type="text" id="inputUser" class="form-control"
+             placeholder="User" i18n-placeholder required autofocus
+			       [(ngModel)]="authService.userName" name="userName" #userNameRef="ngModel">
 			<validations [for]="userNameRef"></validations>
 		</div>
 
 		<div class="form-group">
-			<label class="control-label sr-only" for="inputPassword">Password</label>
-			<input type="password" id="inputPassword" class="form-control" placeholder="Password"
-			       [(ngModel)]="authService.password" name="password" #passwordRef="ngModel" required>
+			<label class="control-label sr-only" for="inputPassword" i18n>Password</label>
+			<input type="password" id="inputPassword" class="form-control"
+             placeholder="Password" i18n-placeholder required
+			       [(ngModel)]="authService.password" name="password" #passwordRef="ngModel">
 			<validations [for]="passwordRef"></validations>
 		</div>
 
 		<div class="form-group">
 			<button class="btn btn-lg btn-primary btn-block" (click)="login()"
-			        [disabled]="!loginForm.form.valid" type="button">Login
-			</button>
+			        [disabled]="!loginForm.form.valid" type="button" i18n>Login</button>
 		</div>
 	</form>
 </div>
 <div [hidden]="!authService.isLoggedIn" class="form-logout">
-	<h2 class="form-login-heading">Logged in with {{authService.userName}}</h2>
+	<h2 class="form-login-heading"><ng-container i18n>Logged in with</ng-container> {{authService.userName}}</h2>
 	<br>
 	<button class="btn btn-lg btn-primary btn-block"
-	        (click)="logout()" type="button">Logout
-	</button>
+	        (click)="logout()" type="button" i18n>Logout</button>
 </div>
