@@ -6,3 +6,8 @@ images hash in *.html, template or templateUrl
 see app.component.ts, home.component.html and home.component.css
 
 6b14c14 adr <adr@adrhcyahoo.com> on 1/10/17 at 8:59 PM
+
+whats-the-difference-between-dependencies-devdependencies-and-peerdependencies
+http://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies
+
+https://docs.npmjs.com/files/package.json#dependencies
