@@ -1,6 +1,7 @@
 /*styles for home content only*/
 .misc1, .miscHome {
 	background-color: aqua;
+  background: url('../../images/fullscreen3.jpg') repeat;
 	border: solid red;
 	color: yellow;
 }

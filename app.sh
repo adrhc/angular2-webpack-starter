@@ -18,6 +18,11 @@ deploy() {
 	fi
 }
 
+clean() {
+	npm run clean:aot
+	npm run clean:dist
+}
+
 dev() {
 	buildDev
 }
@@ -32,6 +37,15 @@ prod() {
 
 buildProd() {
 	npm run build:prod
+}
+
+aot() {
+	npm run build:aot:prod
+}
+
+aotDeploy() {
+	aot
+	deploy "$@"
 }
 
 prodDeploy() {

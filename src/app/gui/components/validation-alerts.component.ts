@@ -1,20 +1,17 @@
-import {
-  Component, IterableDiffer, Input, KeyValueDiffers, ElementRef
-}        from '@angular/core';
+import { Component, Input, OnDestroy, ElementRef } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import any = jasmine.any;
 
 @Component({
   selector: 'validations',
   // styleUrls: ['./validation-alerts.css'],
   templateUrl: './validation-alerts.html'
 })
-export class ValidationAlertsComponent {
-  showAlerts: boolean = false;
+export class ValidationAlertsComponent implements OnDestroy {
+  public showAlerts: boolean = false;
   // alerts: string[];
-  label: string;
-  _alertsFor: NgModel;
+  public label: string;
+  public _alertsFor: NgModel;
   private jqFormGroupElem: any;
   private jqIcon: any;
   private jqElemsToAlert: any[];
@@ -22,25 +19,25 @@ export class ValidationAlertsComponent {
   // private jqInputElem: any;
   // private focusCSS: string;
   private subscription: Subscription;
-  private differ: IterableDiffer;
-  private fakeObject: {data: any} = { data: undefined };
+  // private differ: IterableDiffer;
+  // private fakeObject: {data: any} = { data: undefined };
   // private messages: {[key: string]: any} = {
   //   required: ' is required'
   // };
 
   private static appendGlypicon(jqInputElem: any): any {
-    let jqIcon: any = jQuery.parseHTML(
+    let jqIcon: any = $.parseHTML(
       '<span class="glyphicon form-control-feedback" aria-hidden="true"></span>');
     jqIcon = $(jqIcon);
     return jqIcon.insertAfter(jqInputElem);
   }
 
-  constructor(differs: KeyValueDiffers, private elRef: ElementRef) {
-    this.differ = differs.find({}).create(null);
+  constructor(private elRef: ElementRef) {
+    // this.differ = differs.find({}).create(null);
   }
 
   @Input('for')
-  set alertsFor(alertsFor: NgModel) {
+  public set alertsFor(alertsFor: NgModel) {
     this._alertsFor = alertsFor;
     // console.log('[ValidationAlertsComponent] alertsFor');
     // console.log(alertsFor);
@@ -135,12 +132,12 @@ export class ValidationAlertsComponent {
 
     const success: boolean = css.includes('has-success');
     const classToRemove: string = success ? 'has-error has-feedback' : 'has-success has-feedback';
-    if ( this.jqIcon ) {
+    if (this.jqIcon) {
       // optional feedback icon
       this.jqIcon.removeClass(success ? 'glyphicon-remove' : 'glyphicon-ok');
       this.jqIcon.addClass(success ? 'glyphicon-ok' : 'glyphicon-remove');
     }
-    if ( this.jqFormGroupElem ) {
+    if (this.jqFormGroupElem) {
       // form-group
       this.jqFormGroupElem.removeClass(classToRemove);
       this.jqFormGroupElem.addClass(css);
@@ -160,7 +157,7 @@ export class ValidationAlertsComponent {
 
     // preparing the form-group
     this.jqFormGroupElem = jqAlertsElem.closest('.form-group');
-    if ( !this.jqFormGroupElem.length ) {
+    if (!this.jqFormGroupElem.length) {
       this.jqFormGroupElem = null;
       // } else {
       //   console.log(`[ValidationAlertsComponent] jqFormGroupElem: tagName = ${this.jqFormGroupElem.prop('tagName')}, class = ${this.jqFormGroupElem.attr('class')}`);
@@ -169,7 +166,7 @@ export class ValidationAlertsComponent {
     // preparing the input using the input-group if any
     const jqInputGroup = jqAlertsElem.prevAll('.input-group:first');
     let jqInputElem: any;
-    if ( jqInputGroup.length ) {
+    if (jqInputGroup.length) {
       jqInputElem = jqInputGroup.children('[name=' + alertsFor.name + ']:first');
       // console.log(`[ValidationAlertsComponent] jqInputGroup: tagName = ${jqInputGroup.prop('tagName')}, class = ${jqInputGroup.attr('class')}`);
     } else {
@@ -182,7 +179,7 @@ export class ValidationAlertsComponent {
     // preparing the label
     const jqLabelElem = jqAlertsElem.prevAll('label:first');
     let labelElemText: string;
-    if ( jqLabelElem.length ) {
+    if (jqLabelElem.length) {
       // console.log(`[ValidationAlertsComponent] jqLabelElem: html = ${this.jqLabelElem.html()}, tagName = ${this.jqLabelElem.prop('tagName')}, for = ${this.jqLabelElem.attr('for')}, class = ${this.jqLabelElem.attr('class')}`);
       labelElemText = jqLabelElem.val();
       this.jqElemsToAlert.push(jqLabelElem);
@@ -191,7 +188,7 @@ export class ValidationAlertsComponent {
 
     // preparing glyphicon form-control-feedback
     this.jqIcon = jqAlertsElem.prevAll('.form-control-feedback:first');
-    if ( !this.jqIcon.length ) {
+    if (!this.jqIcon.length) {
       // this.jqIcon = jqAlertsElem.children('.form-control-feedback:first');
       // this.useInternalGlyphicon = true;
       this.jqIcon = ValidationAlertsComponent.appendGlypicon(jqInputElem);

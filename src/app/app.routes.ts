@@ -13,7 +13,7 @@ export const ROUTES: Routes = [
   { path: 'about', component: AboutComponent },
   {
     path: 'detail',
-    loadChildren: () => System.import('./+detail').then((comp: any) => comp.default),
+    loadChildren: './+detail/index#AboutModule',
     canActivate: [AuthGuard]
   },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },

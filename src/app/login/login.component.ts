@@ -6,14 +6,14 @@ import { AuthService } from './auth.service';
 @Component({
   encapsulation: ViewEncapsulation.None,
   templateUrl: './login.html',
-  styleUrls: ['./login.less'],
+  styleUrls: ['./login.css'],
   // host: { '[@routeAnimation]': 'true' },
   // animations: [slideInDownAnimation]
 })
 export class LoginComponent {
   // @HostBinding('@routeAnimation') routeAnimation = true;
 
-  message: string;
+  public message: string;
 
   constructor(public authService: AuthService,
               public router: Router) {
