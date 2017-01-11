@@ -51,11 +51,11 @@ import { Subscription } from 'rxjs';
       <div class="miscApp">[app] miscApp, activeUrl: {{activeUrl}}</div>
       
       <img src="../images/fullscreen2.jpg" height="20px">
-      [home] &lt;img src="../images/fullscreen2.jpg"&gt; -> NO image-uri hash used!!!<br>
+      [home] &lt;img src="../images/fullscreen2.jpg"&gt; -> NO image-uri hash used!!! not working in production<br>
+      <img src="../assets/img/angularclass-avatar.png" height="20px"> 
+      [app] &lt;img src="../assets/img/angularclass-avatar.png&gt; -> NO image-uri hash used!!! not working in production<br>
       <img src="assets/img/angularclass-avatar.png" height="20px"> 
       [app] &lt;img src="assets/img/angularclass-avatar.png&gt; -> NO image-uri hash used!!!<br>
-      <img src="../assets/img/angularclass-avatar.png" height="20px"> 
-      [app] &lt;img src="../assets/img/angularclass-avatar.png&gt; -> NO image-uri hash used!!!<br>
       <img [src]="angularClassLogo" height="20px">
       [app] using <code>public angularClassLogo = 'assets/img/angularclass-avatar.png';</code> in component -> NO image-uri hash used!!!<br>
 
