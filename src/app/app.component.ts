@@ -1,7 +1,11 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation, OnDestroy
+} from '@angular/core';
 import { AppState } from './app.service';
 import { AuthService } from './login/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
@@ -63,10 +67,10 @@ import { Subscription } from 'rxjs';
     </div>
   `
 })
-export class AppComponent {
-  angularClassLogo = 'assets/img/angularclass-avatar.png';
-  subscription: Subscription;
-  activeUrl: string;
+export class AppComponent implements OnInit, OnDestroy {
+  public angularClassLogo = 'assets/img/angularclass-avatar.png';
+  public activeUrl: string;
+  private subscription: Subscription;
 
   constructor(public appState: AppState,
               public authService: AuthService,
@@ -74,7 +78,7 @@ export class AppComponent {
     // console.log('[app] constructor');
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     // console.log('[app] ngOnInit, Initial App State', this.appState.state);
     // "this" in "function (s)" is NOT AppComponent.this !!!
     let _this = this;
@@ -88,7 +92,7 @@ export class AppComponent {
     });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     // console.log('[app] ngOnDestroy: ');
     this.subscription.unsubscribe();
   }

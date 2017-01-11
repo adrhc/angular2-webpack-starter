@@ -5,17 +5,14 @@ import { NoContentComponent } from './no-content';
 
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './login/auth-guard.service';
+import { DataResolver } from './app.resolver';
 
 // see preloadingStrategy for lazy loaded routes
 export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home',  component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  {
-    path: 'detail',
-    loadChildren: './+detail/index#DetailModule',
-    canActivate: [AuthGuard]
-  },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home',  component: HomeComponent },
+  { path: 'about', component: AboutComponent, resolve: { resolvedData: DataResolver } },
+  { path: 'detail', loadChildren: './+detail/index#DetailModule', canActivate: [AuthGuard] },
   { path: '**',    component: NoContentComponent },
 ];

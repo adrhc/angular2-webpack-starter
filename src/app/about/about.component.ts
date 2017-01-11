@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import { ActivatedRoute, Data } from '@angular/router';
 
 @Component({
   selector: 'about',
@@ -21,20 +24,24 @@ import { ActivatedRoute } from '@angular/router';
     <div class="miscAbout">miscAbout</div>
   `
 })
-export class AboutComponent {
-  localState: any;
+export class AboutComponent implements OnInit {
+  private static merge(object: {[name: string]: any}, array: Array<any>): void {
+    array.forEach((item) => $.extend(object, item));
+  }
+
+  public localState: {[name: string]: any} = {};
 
   constructor(public route: ActivatedRoute) {
     console.log('constructor AboutComponent');
   }
 
-  ngOnInit() {
-    this.route
-      .data
-      .subscribe((data: any) => {
-        // your resolved data from route
-        this.localState = data.yourData;
-      });
+  public ngOnInit() {
+    this.route.data.subscribe((data) => {
+      console.log(`resolved data: ${JSON.stringify(data)}`);
+      // your resolved data from route
+      // this.localState['fromResolver'] = data;
+      $.extend(this.localState, data);
+    });
 
     console.log('hello `About` component');
     // static data that is bundled
@@ -43,16 +50,22 @@ export class AboutComponent {
     // if you're working with mock data you can also use http.get('assets/mock-data/mock-data.json')
     this.asyncDataWithWebpack();
   }
-  asyncDataWithWebpack() {
+
+  private asyncDataWithWebpack() {
     // you can also async load mock data with 'es6-promise-loader'
     // you would do this if you don't want the mock-data bundled
     // remember that 'es6-promise-loader' is a promise
     setTimeout(() => {
 
       System.import('../../assets/mock-data/mock-data.json')
-        .then(json => {
-          console.log('async mockData', json);
-          this.localState = json;
+        .then((json) => {
+          console.log(`async mockData: ${JSON.stringify(json)}`);
+          // this.localState['asyncData'] = json;
+          if (json instanceof Array) {
+            AboutComponent.merge(this.localState, <Array<any>> json);
+          } else {
+            $.extend(this.localState, json);
+          }
         });
 
     });
