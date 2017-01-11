@@ -1,4 +1,6 @@
 .misc1, .miscDetail {
+  background: url('../../images/photoConfigOff2.jpg') no-repeat;
+  background-position: right;
 	background-color: aqua;
 	border: solid red;
 	color: red;
