@@ -53,9 +53,18 @@ prodDeploy() {
 	deploy "$@"
 }
 
+gomAotDeploy() {
+	git pull origin master
+	aotDeploy "$@"
+}
+
+gomAotDeployr() {
+	gomAotDeploy remote
+}
+
 gomProdDeploy() {
 	git pull origin master
-	prodDeploy
+	prodDeploy "$@"
 }
 
 scripts() {
