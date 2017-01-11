@@ -57,7 +57,7 @@ import { Subscription } from 'rxjs';
       <img src="../assets/img/angularclass-avatar.png" height="20px"> 
       [app] &lt;img src="../assets/img/angularclass-avatar.png&gt; -> NO image-uri hash used!!!<br>
       <img [src]="angularClassLogo" height="20px">
-      [app] using in component: angularClassLogo = 'assets/img/angularclass-avatar.png'; -> NO image-uri hash used!!!<br>
+      [app] using <code>public angularClassLogo = 'assets/img/angularclass-avatar.png';</code> in component -> NO image-uri hash used!!!<br>
 
       <pre class="app-state">[app] this.appState.state = {{ appState.state | json }}</pre>
     </div>
