@@ -86,7 +86,7 @@ module.exports = function (options) {
        *
        * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
        */
-      extensions: ['.ts', '.js', '.json', '.css', '.less', '.min.css'],
+      extensions: ['.ts', '.js', '.json', '.css', '.less'],
 
       // An array of directory names to be resolved to the current directory
       modules: [helpers.root('src'), helpers.root('node_modules')],
@@ -154,8 +154,8 @@ module.exports = function (options) {
          * bootstrap (put it before other CSS)
          */
         {
-          test: /\.min\.css$/,
-          loader: ['style-loader/url', 'file-loader'],
+          test: /\.css$/,
+          loader: ['style-loader',  'css-loader'],
           include: helpers.root('node_modules/bootstrap/dist/css'),
           exclude: helpers.root('src')
         },
