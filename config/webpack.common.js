@@ -154,9 +154,9 @@ module.exports = function (options) {
          * bootstrap (put it before other CSS)
          */
         {
-          test: /\.css$/,
+          test: /\.min\.css$/,
           loader: ['style-loader/url', 'file-loader'],
-          include: helpers.root('node_modules/bootstrap/dist'),
+          include: helpers.root('node_modules/bootstrap/dist/css'),
           exclude: helpers.root('src')
         },
 
