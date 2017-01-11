@@ -1,7 +1,12 @@
 /*styles for home content only*/
 .misc1, .miscHome {
+  background: url('../../images/home.png') no-repeat;
+  background-position: right;
 	background-color: aqua;
-  background: url('../../images/fullscreen3.jpg') repeat;
 	border: solid red;
-	color: yellow;
+	color: blue;
+}
+
+address {
+  margin-bottom: 0;
 }

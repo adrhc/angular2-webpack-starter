@@ -50,26 +50,21 @@ import { Subscription } from 'rxjs';
     <div [hidden]="activeUrl === '/login'">
       <div class="miscApp">[app] miscApp, activeUrl: {{activeUrl}}</div>
       
-      <img src="assets/img/angularclass-avatar.png" height="20px"> [app] just a simple &lt;img src="assets/img/angularclass-avatar.png&gt; -> NO image-uri hash used!!!<br>
-      <img src="../assets/img/angularclass-avatar.png" height="20px"> [app] just a simple &lt;img src="../assets/img/angularclass-avatar.png&gt; -> NO image-uri hash used!!!<br>
+      <img src="../images/fullscreen2.jpg" height="20px">
+      [home] &lt;img src="../images/fullscreen2.jpg"&gt; -> NO image-uri hash used!!!<br>
+      <img src="assets/img/angularclass-avatar.png" height="20px"> 
+      [app] &lt;img src="assets/img/angularclass-avatar.png&gt; -> NO image-uri hash used!!!<br>
+      <img src="../assets/img/angularclass-avatar.png" height="20px"> 
+      [app] &lt;img src="../assets/img/angularclass-avatar.png&gt; -> NO image-uri hash used!!!<br>
+      <img [src]="angularClassLogo" height="20px">
+      [app] using in component: angularClassLogo = 'assets/img/angularclass-avatar.png'; -> NO image-uri hash used!!!<br>
 
       <pre class="app-state">[app] this.appState.state = {{ appState.state | json }}</pre>
-  
-      <footer>
-        <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
-        <div>
-          <a [href]="url">
-            <img [src]="angularClassLogo" height="20px">
-          </a> [app] using in component: angularClassLogo = 'assets/img/angularclass-avatar.png'; -> NO image-uri hash used!!!
-        </div>
-      </footer>
     </div>
   `
 })
 export class AppComponent {
   angularClassLogo = 'assets/img/angularclass-avatar.png';
-  name = 'Angular 2 Webpack Starter';
-  url = 'https://twitter.com/AngularClass';
   subscription: Subscription;
   activeUrl: string;
 

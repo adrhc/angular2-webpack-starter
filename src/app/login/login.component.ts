@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 @Component({
   encapsulation: ViewEncapsulation.None,
   templateUrl: './login.html',
-  styleUrls: ['./login.css'],
+  styleUrls: ['./login.less'],
   // host: { '[@routeAnimation]': 'true' },
   // animations: [slideInDownAnimation]
 })

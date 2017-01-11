@@ -30,14 +30,15 @@
   <div class="misc1">misc1 {{ birthday | date:'fullDate' }}</div>
   <div class="miscGlobal">miscGlobal</div>
   <div class="miscHome">miscHome</div>
-  <img src="../../images/fullscreen-back2.jpg" height="20px"> [home] just a simple &lt;img src="../../images/fullscreen-back2.jpg"&gt;
-  <br><br>
+  <img src="../../images/fullscreen-back2.jpg" height="20px">
+  [home] &lt;img src="../../images/fullscreen-back2.jpg"&gt; -> image-uri hash used!!!<br>
+  <img src="{{testImage1}}" height="20px">
+  [home] using <code>public testImage1 = require('../../images/photoConfigOn1.jpg');</code> in @HomeComponent -> image-uri hash used!!!<br><br>
+
   <address>
-    <strong>Twitter, Inc. <i class="glyphicon glyphicon-glass"></i></strong><br>
-    San Francisco, CA 94103<br>
+    <strong>[home] Twitter, Inc. <i class="glyphicon glyphicon-glass"></i></strong><br>
     <abbr title="Phone">P:</abbr> (123) 456-7890<br>
     <a href="mailto:#">first.last@example.com</a><br><br>
-    <img src="{{testImage1}}" height="20px"> [home] using in component: testImage1 = require('../../images/photoConfigOn1.jpg');
   </address>
 
 </div>

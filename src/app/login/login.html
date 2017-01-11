@@ -1,7 +1,8 @@
-<div [hidden]="authService.isLoggedIn" style="margin: auto"
-     [style.display]="authService.isLoggedIn ? 'none' : 'table'">
+<div [hidden]="authService.isLoggedIn" class="form-container"
+     [style.display]="authService.isLoggedIn ? 'none' : 'block'">
+     <!--[style.display]="authService.isLoggedIn ? 'none' : 'table'">-->
 	<form class="form-login" #loginForm="ngForm">
-		<h2 class="form-login-heading" i18n>Login to Your Account</h2>
+		<h2 class="form-login-heading" i18n>Please sign in</h2>
 
 		<div class="form-group">
 			<label class="control-label sr-only" for="inputUser" i18n>User</label>
@@ -26,8 +27,9 @@
 	</form>
 </div>
 <div [hidden]="!authService.isLoggedIn" class="form-logout">
-	<h2 class="form-login-heading"><ng-container i18n>Logged in with</ng-container> {{authService.userName}}</h2>
-	<br>
+	<h2 class="form-login-heading">
+    <ng-container i18n>Logged with</ng-container> {{authService.userName}}
+  </h2><br>
 	<button class="btn btn-lg btn-primary btn-block"
 	        (click)="logout()" type="button" i18n>Logout</button>
 </div>

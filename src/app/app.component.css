@@ -8,7 +8,9 @@ span.active {
 }
 
 .misc1, .miscApp {
-  background-color: aqua;
+  background: url('../images/photoConfigOn1.jpg') no-repeat;
+  background-position: right;
+  background-color: #ffbb53;
   border: solid red;
   color: blue;
 }
