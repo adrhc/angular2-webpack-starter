@@ -51,13 +51,13 @@ import { Subscription } from 'rxjs';
       <div class="miscApp">[app] miscApp, activeUrl: {{activeUrl}}</div>
       
       <img src="../images/fullscreen2.jpg" height="20px">
-      [home] &lt;img src="../images/fullscreen2.jpg"&gt; -> NO image-uri hash used!!! not working in production<br>
+      [home] <code>&lt;img src="../images/fullscreen2.jpg"&gt;</code> -> NO image-uri hash used!!! (broken link in production)<br>
       <img src="../assets/img/angularclass-avatar.png" height="20px"> 
-      [app] &lt;img src="../assets/img/angularclass-avatar.png&gt; -> NO image-uri hash used!!! not working in production<br>
+      [app] <code>&lt;img src="../assets/img/angularclass-avatar.png&gt;</code> -> NO image-uri hash used!!! (broken link in production)<br>
       <img src="assets/img/angularclass-avatar.png" height="20px"> 
-      [app] &lt;img src="assets/img/angularclass-avatar.png&gt; -> NO image-uri hash used!!!<br>
+      [app] <code>&lt;img src="assets/img/angularclass-avatar.png&gt;</code> -> NO image-uri hash used!!!<br>
       <img [src]="angularClassLogo" height="20px">
-      [app] using <code>public angularClassLogo = 'assets/img/angularclass-avatar.png';</code> in component -> NO image-uri hash used!!!<br>
+      [app] using <code>public angularClassLogo = 'assets/img/angularclass-avatar.png';</code> in @AppComponent -> NO image-uri hash used!!!<br>
 
       <pre class="app-state">[app] this.appState.state = {{ appState.state | json }}</pre>
     </div>
