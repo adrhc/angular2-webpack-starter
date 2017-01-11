@@ -86,7 +86,7 @@ module.exports = function (options) {
        *
        * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
        */
-      extensions: ['.ts', '.js', '.json', '.css', '.less'],
+      extensions: ['.ts', '.js', '.json', '.css', '.less', '.min.css'],
 
       // An array of directory names to be resolved to the current directory
       modules: [helpers.root('src'), helpers.root('node_modules')],
