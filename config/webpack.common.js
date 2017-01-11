@@ -155,8 +155,8 @@ module.exports = function (options) {
          */
         {
           test: /\.css$/,
-          loader: ['style-loader', 'css-loader'],
-          include: helpers.root('node_modules/bootstrap'),
+          loader: ['style-loader/url', 'file-loader'],
+          include: helpers.root('node_modules/bootstrap/dist'),
           exclude: helpers.root('src')
         },
 
