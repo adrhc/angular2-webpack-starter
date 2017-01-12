@@ -34,6 +34,9 @@ import { AuthGuard } from './login/auth-guard.service';
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
 import { ValidationAlertsComponent } from './gui/components/validation-alerts.component';
 
+import '../styles/styles.scss';
+import '../styles/headings.css';
+
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
