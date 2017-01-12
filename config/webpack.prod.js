@@ -108,7 +108,8 @@ module.exports = function (env) {
               fallbackLoader: 'style-loader',
               loader: 'css-loader'
             }),
-	        include: [helpers.root('src', 'bootstrap-dist')]
+	        include: [helpers.root('src/bootstrap-dist')]
+	        // include: [helpers.root('node_modules/bootstrap/dist')]
         },
 
         /*
