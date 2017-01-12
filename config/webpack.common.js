@@ -20,6 +20,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 // const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /*
  * Webpack Constants
@@ -160,6 +161,18 @@ module.exports = function (options) {
           exclude: helpers.root('src')
         },
 
+	      /*
+	       * Extract CSS files from node_modules/bootstrap/dist/css directory to external CSS file
+	       */
+	      // {
+		     //  test: /\.css$/,
+		     //  loader: ExtractTextPlugin.extract({
+			   //    fallbackLoader: 'style-loader',
+			   //    loader: 'css-loader'
+		     //  }),
+		     //  include: [helpers.root('node_modules', 'bootstrap', 'dist', 'css')]
+	      // },
+
         /*
          * other global CSS e.g. ie10-viewport-bug-workaround.css
          */
@@ -289,7 +302,6 @@ module.exports = function (options) {
         {from: 'src/meta'}
       ]),
 
-
       /*
        * Plugin: HtmlWebpackPlugin
        * Description: Simplifies creation of HTML files to serve your webpack bundles.
@@ -394,6 +406,15 @@ module.exports = function (options) {
         /facade(\\|\/)math/,
         helpers.root('node_modules/@angular/core/src/facade/math.js')
       ),
+
+	    /**
+	     * Plugin: ExtractTextPlugin
+	     * Description: Extracts imported CSS files into external stylesheet
+	     *
+	     * See: https://github.com/webpack/extract-text-webpack-plugin
+	     */
+	    // new ExtractTextPlugin('css/[name].[contenthash].css'),
+
     ],
 
     /*

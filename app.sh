@@ -48,6 +48,11 @@ aotDeploy() {
 	deploy "$@"
 }
 
+aotDeployr() {
+	aot
+	deploy "remote"
+}
+
 prodDeploy() {
 	buildProd
 	deploy "$@"
@@ -59,7 +64,7 @@ gomAotDeploy() {
 }
 
 gomAotDeployr() {
-	gomAotDeploy remote
+	gomAotDeploy "remote"
 }
 
 gomProdDeploy() {
