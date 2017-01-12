@@ -72,3 +72,6 @@ stats.json
 
 # Meld
 *.orig
+
+# bootstrap's copy
+/src/bootstrap-dist/

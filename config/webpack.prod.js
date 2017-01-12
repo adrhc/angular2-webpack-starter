@@ -102,6 +102,15 @@ module.exports = function (env) {
           include: [helpers.root('src', 'styles')]
         },
 
+        {
+          test: /\.css$/,
+          loader: ExtractTextPlugin.extract({
+              fallbackLoader: 'style-loader',
+              loader: 'css-loader'
+            }),
+	        include: [helpers.root('src', 'bootstrap-dist')]
+        },
+
         /*
          * Extract and compile SCSS files from .src/styles directory to external CSS file
          */

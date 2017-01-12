@@ -6,8 +6,8 @@ import { decorateModuleRef } from './app/environment';
 import { bootloader } from '@angularclass/hmr';
 
 // bootstrap 3.3.7:
-import 'bootstrap/dist/css/bootstrap';
-import 'bootstrap/dist/css/bootstrap-theme';
+import 'bootstrap-dist/css/bootstrap.css';
+import 'bootstrap-dist/css/bootstrap-theme.css';
 
 // taken from bootstrap
 import 'css/ie10-viewport-bug-workaround';

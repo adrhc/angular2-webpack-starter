@@ -89,6 +89,16 @@ module.exports = function (options) {
       rules: [
 
         /*
+         * bootstrap (put it before other CSS)
+         */
+	      {
+		      test: /\.css$/,
+		      loader: ['style-loader',  'css-loader'],
+		      // include: helpers.root('node_modules/bootstrap'),
+		      include: helpers.root('src/bootstrap-dist')
+	      },
+
+        /*
          * css loader support for *.css files (styles directory only)
          * Loads external css styles into the DOM, supports HMR
          *
