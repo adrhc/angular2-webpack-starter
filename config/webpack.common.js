@@ -180,7 +180,7 @@ module.exports = function (options) {
           test: /\.css$/,
           loader: ['style-loader', 'css-loader'],
           include: helpers.root('src/css'),
-          exclude: helpers.root('node_modules')
+          exclude: [helpers.root('node_modules'), helpers.root('src/styles')]
         },
 
         /*
@@ -194,7 +194,7 @@ module.exports = function (options) {
           test: /\.css$/,
           use: ['to-string-loader', 'css-loader'],
           include: helpers.root('src'),
-          exclude: [helpers.root('node_modules'), helpers.root('src/css'), helpers.root('src/styles')]
+          exclude: [helpers.root('node_modules'), helpers.root('src/styles'), helpers.root('src/css')]
         },
 
         /*

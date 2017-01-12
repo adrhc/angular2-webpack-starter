@@ -18,6 +18,10 @@ deploy() {
 	fi
 }
 
+deployr() {
+    deploy "remote"
+}
+
 clean() {
 	npm run clean:aot
 	npm run clean:dist
