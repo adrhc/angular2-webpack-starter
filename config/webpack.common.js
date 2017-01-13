@@ -130,34 +130,6 @@ module.exports = function (options) {
           use: 'json-loader'
         },
 
-        /*
-         * 1. bootstrap (a global CSS)
-         */
-        // {
-        //   test: /\.css$/,
-        //   loader: ['style-loader',  'css-loader'],
-        //   include: helpers.root('node_modules/bootstrap/dist')
-        // },
-
-        /*
-         * 2. other global CSS (e.g. ie10-viewport-bug-workaround.css)
-         */
-        // {
-        //   test: /\.css$/,
-        //   loader: ['style-loader', 'css-loader'],
-        //   include: helpers.root('src/css')
-        // },
-
-	      /*
-	       * 3. global LESS
-	       */
-	      // {
-	      //   test: /\.less$/,
-	      //   loaders: ['style-loader', 'css-loader', 'less-loader'],
-	      //   include: helpers.root('src/less'),
-	      //   exclude: helpers.root('node_modules')
-	      // },
-
 	      /*
 	       * 9a. component level LESS
 	       */
@@ -175,11 +147,11 @@ module.exports = function (options) {
 	       * Returns compiled css content as string
 	       *
 	       */
-	      {
-		      test: /\.scss$/,
-		      use: ['to-string-loader', 'css-loader', 'sass-loader'],
-		      exclude: [helpers.root('src', 'styles')]
-	      },
+	      // {
+		     //  test: /\.scss$/,
+		     //  use: ['to-string-loader', 'css-loader', 'sass-loader'],
+		     //  exclude: [helpers.root('src', 'styles')]
+	      // },
 
         /*
          * 9c. component level CSS

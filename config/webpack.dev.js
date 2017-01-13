@@ -89,17 +89,17 @@ module.exports = function (options) {
       rules: [
 
         /*
-         * 3c. global CSS( brought by SCSS patch)
+         * 3c. global CSS(brought by SCSS patch)
          *
          * css loader support for *.css files (styles directory only)
          * Loads external css styles into the DOM, supports HMR
          *
          */
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
-          include: [helpers.root('src', 'styles')]
-        },
+        // {
+        //   test: /\.css$/,
+        //   use: ['style-loader', 'css-loader'],
+        //   include: [helpers.root('src', 'styles')]
+        // },
 
 	      /*
 	       * 3b. global SASS-SCSS
@@ -108,11 +108,11 @@ module.exports = function (options) {
 	       * Loads external sass styles into the DOM, supports HMR
 	       *
 	       */
-	      {
-		      test: /\.scss$/,
-		      use: ['style-loader', 'css-loader', 'sass-loader'],
-		      include: [helpers.root('src', 'styles')]
-	      },
+	      // {
+		     //  test: /\.scss$/,
+		     //  use: ['style-loader', 'css-loader', 'sass-loader'],
+		     //  include: [helpers.root('src', 'styles')]
+	      // },
 
 	      /*
 	       * 3a. global LESS

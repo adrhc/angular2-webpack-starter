@@ -91,32 +91,32 @@ module.exports = function (env) {
       rules: [
 
         /*
-         * 3c. global CSS( brought by SCSS patch)
+         * 3c. global CSS(brought by SCSS patch)
          *
          * Extract CSS files from .src/styles directory to external CSS file
          */
-        {
-          test: /\.css$/,
-          loader: ExtractTextPlugin.extract({
-              fallbackLoader: 'style-loader',
-              loader: 'css-loader'
-            }),
-          include: [helpers.root('src', 'styles')]
-        },
+        // {
+        //   test: /\.css$/,
+        //   loader: ExtractTextPlugin.extract({
+        //       fallbackLoader: 'style-loader',
+        //       loader: 'css-loader'
+        //     }),
+        //   include: [helpers.root('src', 'styles')]
+        // },
 
         /*
          * 3b. global SASS-SCSS
          *
          * Extract and compile SCSS files from .src/styles directory to external CSS file
          */
-        {
-          test: /\.scss$/,
-          loader: ExtractTextPlugin.extract({
-              fallbackLoader: 'style-loader',
-              loader: 'css-loader!sass-loader'
-            }),
-          include: [helpers.root('src', 'styles')]
-        },
+        // {
+        //   test: /\.scss$/,
+        //   loader: ExtractTextPlugin.extract({
+        //       fallbackLoader: 'style-loader',
+        //       loader: 'css-loader!sass-loader'
+        //     }),
+        //   include: [helpers.root('src', 'styles')]
+        // },
 
 	      /*
 	       * 3a. global LESS
