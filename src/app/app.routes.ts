@@ -13,6 +13,7 @@ export const ROUTES: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
   { path: 'about', component: AboutComponent, resolve: { resolvedData: DataResolver } },
-  { path: 'detail', loadChildren: './+detail/index#DetailModule', canActivate: [AuthGuard] },
+  { path: 'detail', loadChildren: './+detail#DetailModule', canActivate: [AuthGuard] },
+  { path: 'barrel', loadChildren: './+barrel#BarrelModule'},
   { path: '**',    component: NoContentComponent },
 ];

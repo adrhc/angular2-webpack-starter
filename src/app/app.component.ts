@@ -4,7 +4,8 @@
 import {
   Component,
   OnInit,
-  ViewEncapsulation, OnDestroy
+  ViewEncapsulation, 
+  OnDestroy
 } from '@angular/core';
 import { AppState } from './app.service';
 import { AuthService } from './login/auth.service';
@@ -38,6 +39,11 @@ import { Subscription } from 'rxjs';
       <span>
         <a [routerLink]=" ['./detail'] " routerLinkActive="active">
           Detail
+        </a>
+      </span>
+      <span>
+        <a [routerLink]=" ['./barrel'] " routerLinkActive="active">
+          Barrel
         </a>
       </span>
       <span>
