@@ -5,4 +5,5 @@ https://docs.npmjs.com/files/package.json#dependencies
 
 Node version management
 https://github.com/tj/n
-npm install -g n
+sudo npm install -g n
+sudo n stable
