@@ -9,7 +9,26 @@
 
   https://css-tricks.com/forums/topic/apply-class-to-parent-if-child-div-contains-class/
  */
-@import (reference) "../../node_modules/bootstrap/less/bootstrap.less";
+
+//@import (reference) "../../node_modules/bootstrap/less/bootstrap.less";
+
+// Core variables and mixins
+@import "../../node_modules/bootstrap/less/variables.less";
+@import "../../node_modules/bootstrap/less/mixins.less";
+
+// Reset and dependencies
+@import "../../node_modules/bootstrap/less/normalize.less";
+@import "../../node_modules/bootstrap/less/print.less";
+@import "../../node_modules/bootstrap/less/glyphicons.less";
+
+// Core CSS
+@import "../../node_modules/bootstrap/less/scaffolding.less";
+@import "../../node_modules/bootstrap/less/type.less";
+@import "../../node_modules/bootstrap/less/code.less";
+@import "../../node_modules/bootstrap/less/grid.less";
+@import "../../node_modules/bootstrap/less/tables.less";
+@import "../../node_modules/bootstrap/less/forms.less";
+@import "../../node_modules/bootstrap/less/buttons.less";
 
 .ng-valid[required], .ng-valid.required {
 	border-left: 5px solid #42A948; /* green */
@@ -64,7 +83,7 @@ nav {
 /* animation */
 app * {
 	animation-name: animateIn;
-	animation-duration: 0.5s;
+	animation-duration: 0.4s;
 	animation-iteration-count: 1;
 	animation-direction: normal;
 	animation-timing-function: ease-in;

@@ -76,7 +76,16 @@ gomProdDeploy() {
 	prodDeploy "$@"
 }
 
-scripts() {
+start() {
+	npm start
+}
+
+cleanStart() {
+	clean
+	start
+}
+
+bashScripts() {
 	# search modules having webpack in peerDependencies
 	find node_modules/ -type f -name package.json -exec grep -A3 -nHr peerDependencies {} \; | grep -i "\"webpack\":"
 }
