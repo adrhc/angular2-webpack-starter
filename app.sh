@@ -23,6 +23,13 @@ deployr() {
 }
 
 clean() {
+	local CLEAN_DLL="$1"
+	if [ "$CLEAN_DLL" == "clean" ]; then
+		CLEAN_DLL="$2"
+	fi
+	if [[ "$CLEAN_DLL" == "dll" || "$CLEAN_DLL" == "d" || "$CLEAN_DLL" == "y" ]]; then
+		npm run clean:dll
+	fi
 	npm run clean:aot
 	npm run clean:dist
 }
@@ -49,7 +56,7 @@ aot() {
 
 aotDeploy() {
 	aot
-	deploy "$@"
+	deploy
 }
 
 aotDeployr() {
@@ -59,12 +66,12 @@ aotDeployr() {
 
 prodDeploy() {
 	buildProd
-	deploy "$@"
+	deploy
 }
 
 gomAotDeploy() {
 	git pull origin master
-	aotDeploy "$@"
+	aotDeploy
 }
 
 gomAotDeployr() {
@@ -73,7 +80,7 @@ gomAotDeployr() {
 
 gomProdDeploy() {
 	git pull origin master
-	prodDeploy "$@"
+	prodDeploy
 }
 
 start() {
@@ -81,7 +88,11 @@ start() {
 }
 
 cleanStart() {
-	clean
+	local PARAMS="$1"
+	if [ "$PARAMS" == "cleanStart" ]; then
+		PARAMS="$2"
+	fi
+	clean "$PARAMS"
 	start
 }
 
