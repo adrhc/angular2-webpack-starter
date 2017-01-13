@@ -119,19 +119,6 @@ module.exports = function (env) {
         // },
 
 	      /*
-	       * 3b. other global CSS (e.g. ie10-viewport-bug-workaround.css)
-	       * Used only when importing (not referencing) bootstrap's less files.
-	       */
-	      {
-		      test: /\.css$/,
-		      loader: ExtractTextPlugin.extract({
-			      fallbackLoader: 'style-loader',
-			      loader: 'css-loader'
-		      }),
-		      include: helpers.root('src/css')
-	      },
-
-	      /*
 	       * 3a. global LESS
 	       */
 	      {
@@ -146,14 +133,14 @@ module.exports = function (env) {
 	      /*
 	       * 2. other global CSS (e.g. ie10-viewport-bug-workaround.css)
 	       */
-	      // {
-		     //  test: /\.css$/,
-		     //  loader: ExtractTextPlugin.extract({
-			   //    fallbackLoader: 'style-loader',
-			   //    loader: 'css-loader'
-		     //  }),
-		     //  include: helpers.root('src/css')
-	      // },
+	      {
+		      test: /\.css$/,
+		      loader: ExtractTextPlugin.extract({
+			      fallbackLoader: 'style-loader',
+			      loader: 'css-loader'
+		      }),
+		      include: helpers.root('src/css')
+	      },
 
 	      /*
 	       * 1. bootstrap (a global CSS)

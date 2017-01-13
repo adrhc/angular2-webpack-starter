@@ -115,17 +115,6 @@ module.exports = function (options) {
 	      // },
 
 	      /*
-	       * 3b. other global CSS (e.g. ie10-viewport-bug-workaround.css)
-	       * Used only when importing (not referencing) bootstrap's less files.
-	       *
-	       */
-	      {
-		      test: /\.css$/,
-		      loader: ['style-loader', 'css-loader'],
-		      include: helpers.root('src/css')
-	      },
-
-	      /*
 	       * 3a. global LESS
 	       */
 	      {
@@ -137,11 +126,11 @@ module.exports = function (options) {
         /*
          * 2. other global CSS (e.g. ie10-viewport-bug-workaround.css)
          */
-	      // {
-		     //  test: /\.css$/,
-		     //  loader: ['style-loader', 'css-loader'],
-		     //  include: helpers.root('src/css')
-	      // },
+	      {
+		      test: /\.css$/,
+		      loader: ['style-loader', 'css-loader'],
+		      include: helpers.root('src/css')
+	      },
 
 	      /*
 	       * 1. bootstrap (a global CSS)
