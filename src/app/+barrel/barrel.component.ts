@@ -13,12 +13,12 @@ console.log('`Barrel` component loaded asynchronously');
 @Component({
   selector: 'barrel',
   template: `
-    <h1>Hello from Barrel</h1>
+    <h1>Hello from Barrel</h1><br>
     <div>
       <a [routerLink]=" ['./child-barrel'] ">
         Child Barrel
       </a>
-    </div><br>
+    </div><br><br>
     <router-outlet></router-outlet>
   `,
 })
