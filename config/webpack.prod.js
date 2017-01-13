@@ -138,8 +138,8 @@ module.exports = function (env) {
 		      loader: ExtractTextPlugin.extract({
 			      fallbackLoader: 'style-loader',
 			      loader: 'css-loader'
-		      }),
-		      include: helpers.root('src/css')
+			    }),
+			    include: helpers.root('src/css')
 	      },
 
 	      /*

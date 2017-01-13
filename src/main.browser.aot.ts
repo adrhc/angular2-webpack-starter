@@ -9,11 +9,16 @@ import { decorateModuleRef } from './app/environment';
 // import 'bootstrap-dist/css/bootstrap-theme.css';
 
 // taken from bootstrap
-import 'css/ie10-viewport-bug-workaround.css';
+// Positioned here when referencing (not importing) bootstrap's less files.
+// import 'css/ie10-viewport-bug-workaround.css';
 
 // project global css
 // see also head-config.common.js
 import 'less/jisr-default-theme.less';
+
+// taken from bootstrap
+// Positioned here when importing (not referencing) bootstrap's less files.
+import 'css/ie10-viewport-bug-workaround.css';
 
 /*
  * App Module
