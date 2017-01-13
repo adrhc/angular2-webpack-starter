@@ -6,10 +6,6 @@
 	color: red;
 }
 
-.hostBinding1 {
-	font-style: italic;
-}
-
 :host {
   display: block;
   border: dotted greenyellow;

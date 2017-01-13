@@ -131,27 +131,7 @@ module.exports = function (options) {
         },
 
         /*
-         * global LESS files
-         */
-        {
-          test: /\.less$/,
-          loaders: ['style-loader', 'css-loader', 'less-loader'],
-          include: helpers.root('src/less'),
-          exclude: helpers.root('node_modules')
-        },
-
-        /*
-         * component level LESS files
-         */
-        {
-          test: /\.less$/,
-          loaders: ['to-string-loader', 'css-loader', 'less-loader'],
-          include: helpers.root('src'),
-          exclude: [helpers.root('src/less')]
-        },
-
-        /*
-         * bootstrap (put it before other CSS)
+         * 1. bootstrap (a global CSS)
          */
         // {
         //   test: /\.css$/,
@@ -160,16 +140,49 @@ module.exports = function (options) {
         // },
 
         /*
-         * other global CSS e.g. ie10-viewport-bug-workaround.css
+         * 2. other global CSS (e.g. ie10-viewport-bug-workaround.css)
          */
-        {
-          test: /\.css$/,
-          loader: ['style-loader', 'css-loader'],
-          include: helpers.root('src/css')
-        },
+        // {
+        //   test: /\.css$/,
+        //   loader: ['style-loader', 'css-loader'],
+        //   include: helpers.root('src/css')
+        // },
+
+	      /*
+	       * 3. global LESS
+	       */
+	      // {
+	      //   test: /\.less$/,
+	      //   loaders: ['style-loader', 'css-loader', 'less-loader'],
+	      //   include: helpers.root('src/less'),
+	      //   exclude: helpers.root('node_modules')
+	      // },
+
+	      /*
+	       * 9a. component level LESS
+	       */
+	      {
+		      test: /\.less$/,
+		      loaders: ['to-string-loader', 'css-loader', 'less-loader'],
+		      include: helpers.root('src'),
+		      exclude: [helpers.root('src/less')]
+	      },
+
+	      /*
+	       * 9b. component level SASS-SCSS
+	       *
+	       * to string and sass loader support for *.scss files (from Angular components)
+	       * Returns compiled css content as string
+	       *
+	       */
+	      {
+		      test: /\.scss$/,
+		      use: ['to-string-loader', 'css-loader', 'sass-loader'],
+		      exclude: [helpers.root('src', 'styles')]
+	      },
 
         /*
-         * component level CSS files
+         * 9c. component level CSS
          *
          * to string and css loader support for *.css files
          * Returns file content as string
@@ -180,17 +193,6 @@ module.exports = function (options) {
           use: ['to-string-loader', 'css-loader'],
           include: helpers.root('src'),
           exclude: [helpers.root('src/styles'), helpers.root('src/bootstrap-dist'), helpers.root('src/css')]
-        },
-
-        /*
-         * to string and sass loader support for *.scss files (from Angular components)
-         * Returns compiled css content as string
-         *
-         */
-        {
-          test: /\.scss$/,
-          use: ['to-string-loader', 'css-loader', 'sass-loader'],
-          exclude: [helpers.root('src', 'styles')]
         },
 
         /* Raw loader support for *.html

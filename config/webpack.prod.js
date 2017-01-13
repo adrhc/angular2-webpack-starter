@@ -91,6 +91,8 @@ module.exports = function (env) {
       rules: [
 
         /*
+         * 3c. global CSS( brought by SCSS patch)
+         *
          * Extract CSS files from .src/styles directory to external CSS file
          */
         {
@@ -102,17 +104,9 @@ module.exports = function (env) {
           include: [helpers.root('src', 'styles')]
         },
 
-        {
-          test: /\.css$/,
-          loader: ExtractTextPlugin.extract({
-              fallbackLoader: 'style-loader',
-              loader: 'css-loader'
-            }),
-	        include: [helpers.root('src/bootstrap-dist')]
-	        // include: [helpers.root('node_modules/bootstrap/dist')]
-        },
-
         /*
+         * 3b. global SASS-SCSS
+         *
          * Extract and compile SCSS files from .src/styles directory to external CSS file
          */
         {
@@ -123,6 +117,43 @@ module.exports = function (env) {
             }),
           include: [helpers.root('src', 'styles')]
         },
+
+	      /*
+	       * 3a. global LESS
+	       */
+	      {
+		      test: /\.less$/,
+		      loader: ExtractTextPlugin.extract({
+			      fallbackLoader: 'style-loader',
+			      loader: 'css-loader!less-loader'
+		      }),
+		      include: helpers.root('src/less')
+	      },
+
+	      /*
+	       * 2. other global CSS (e.g. ie10-viewport-bug-workaround.css)
+	       */
+	      {
+		      test: /\.css$/,
+		      loader: ExtractTextPlugin.extract({
+			      fallbackLoader: 'style-loader',
+			      loader: 'css-loader'
+		      }),
+		      include: helpers.root('src/css')
+	      },
+
+	      /*
+	       * 1. bootstrap (a global CSS)
+	       */
+	      {
+		      test: /\.css$/,
+		      loader: ExtractTextPlugin.extract({
+			      fallbackLoader: 'style-loader',
+			      loader: 'css-loader'
+		      }),
+		      include: [helpers.root('src/bootstrap-dist')]
+		      // include: [helpers.root('node_modules/bootstrap/dist')]
+	      },
 
       ]
 

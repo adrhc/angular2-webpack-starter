@@ -7,14 +7,10 @@ a.active {
   background-color: gray;
 }
 
-.misc1, .miscApp {
+.miscApp, .misc1 {
   background: url('../images/photoConfigOn1.jpg') no-repeat;
   background-position: right;
   background-color: #ffbb53;
   border: solid red;
   color: blue;
-}
-
-.hostBinding1 {
-  font-weight: bolder;
 }

@@ -89,15 +89,8 @@ module.exports = function (options) {
       rules: [
 
         /*
-         * bootstrap (put it before other CSS)
-         */
-	      {
-		      test: /\.css$/,
-		      loader: ['style-loader',  'css-loader'],
-		      include: helpers.root('node_modules/bootstrap/dist')
-	      },
-
-        /*
+         * 3c. global CSS( brought by SCSS patch)
+         *
          * css loader support for *.css files (styles directory only)
          * Loads external css styles into the DOM, supports HMR
          *
@@ -108,16 +101,45 @@ module.exports = function (options) {
           include: [helpers.root('src', 'styles')]
         },
 
+	      /*
+	       * 3b. global SASS-SCSS
+	       *
+	       * sass loader support for *.scss files (styles directory only)
+	       * Loads external sass styles into the DOM, supports HMR
+	       *
+	       */
+	      {
+		      test: /\.scss$/,
+		      use: ['style-loader', 'css-loader', 'sass-loader'],
+		      include: [helpers.root('src', 'styles')]
+	      },
+
+	      /*
+	       * 3a. global LESS
+	       */
+	      {
+	        test: /\.less$/,
+	        loaders: ['style-loader', 'css-loader', 'less-loader'],
+	        include: helpers.root('src/less')
+	      },
+
         /*
-         * sass loader support for *.scss files (styles directory only)
-         * Loads external sass styles into the DOM, supports HMR
-         *
+         * 2. other global CSS (e.g. ie10-viewport-bug-workaround.css)
          */
-        {
-          test: /\.scss$/,
-          use: ['style-loader', 'css-loader', 'sass-loader'],
-          include: [helpers.root('src', 'styles')]
-        },
+	      {
+		      test: /\.css$/,
+		      loader: ['style-loader', 'css-loader'],
+		      include: helpers.root('src/css')
+	      },
+
+	      /*
+	       * 1. bootstrap (a global CSS)
+	       */
+	      {
+		      test: /\.css$/,
+		      loader: ['style-loader',  'css-loader'],
+		      include: helpers.root('node_modules/bootstrap/dist')
+	      },
 
       ]
 
